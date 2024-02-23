@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>FEMA</title>
+</head>
+<body>
+    
+    <h1 style="text-align: center; margin-top: 1em;">FEMA</h1>
+
+    <form action="./includes/mformhandler.php" id="materials-form" method="post">
+        <h2>Materials Needed</h2>
+        
+        <div>
+            <div class="form-item"> 
+                <label for="poutine">Poutine</label>
+                <input type="checkbox" name="poutine" value="Poutine">
+            </div>
+            <div class="form-item">
+                <label for="poutine-qty">Quantity</label>
+                <input type="number" class="quantity-input" min="0" name="poutine-qty">
+            </div>
+        </div>
+        <div>
+            <div class="form-item">
+                <label for="">Item 2</label>
+                <input type="checkbox">
+            </div>
+            <div class="form-item">
+                <label for="">Quantity</label>
+                <input type="number" class="quantity-input" min="0">
+            </div>
+        </div>
+        <div>
+            <div class="form-item">
+                <label for="">Item 3</label>
+                <input type="checkbox">
+            </div>
+            <div class="form-item">
+                <label for="">Quantity</label>
+                <input type="number" class="quantity-input" min="0">
+            </div>
+        </div>
+        <div>
+            <div class="form-item">
+                <label for="">Item 4</label>
+                <input type="checkbox">
+            </div>
+            <div class="form-item">
+                <label for="">Quantity</label>
+                <input type="number" class="quantity-input" min="0">
+            </div>
+        </div>
+
+        <button type="submit">Submit</button>
+
+    </form>
+</body>
+</html>

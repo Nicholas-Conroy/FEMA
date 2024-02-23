@@ -1,0 +1,15 @@
+#materials-form {
+    display: block;
+    margin-top: 3em !important;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+.form-item {
+    display: inline-block;
+}
+
+.quantity-input {
+    width: 40px;
+}
