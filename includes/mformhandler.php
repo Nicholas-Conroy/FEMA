@@ -5,7 +5,6 @@
         $poutine = htmlspecialchars($_POST["poutine"]);
         $poutine_qty = htmlspecialchars($_POST["poutine-qty"]);
 
-        // echo gettype($poutine_qty);
     }
     else {
         header(('Location: ../index.html'));
@@ -15,13 +14,17 @@
         require_once "db.php";
 
         //don't insert data into db directly, less secure
-        $query = "INSERT into materials (material_name, quantity_needed) VALUES (:material_name, :quantity_needed)";
+        // $query = "INSERT into materials (material_name, quantity_needed) VALUES (:material_name, :quantity_needed)";
+        $query = "UPDATE materials
+        SET quantity_needed = (:qty_added) + quantity_needed
+        WHERE material_name = (:material_name); 
+        ";
 
         // prepared stmt
         $stmt = $pdo->prepare($query);
         
+        $stmt->bindParam(":qty_added", $poutine_qty);
         $stmt->bindParam(":material_name", $poutine);
-        $stmt->bindParam(":quantity_needed", $poutine_qty);
 
         $stmt->execute();
 
@@ -29,7 +32,7 @@
         $stmt = null;
 
         // send user back to main page
-        header(('Location: ../index.html'));
+        header(('Location: ../index.php'));
 
         die();
     }
