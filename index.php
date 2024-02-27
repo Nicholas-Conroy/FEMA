@@ -3,6 +3,8 @@
     
 ?>
 
+<!-- TODO: dont allow user to submit a quantity without checking the respective checkbox -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,55 +18,109 @@
     
     <h1 style="text-align: center; margin-top: 1em;">FEMA</h1>
 
-    <form action="./includes/mformhandler.php" id="materials-form" method="post" class="forms">
-        <h2>Materials Needed</h2>
+    <!-- form for requesting materials -->
+    <div id="material-forms">
+        <form action="./includes/mneededformhandler.php" id="materials-requested-form" method="post" class="forms">
+            <h2>Materials Needed</h2>
         
-        <table>
-            <tr>
-                <td>
-                    <label for="poutine">Poutine</label>
-                    <input type="checkbox" name="poutine" value="Poutine">
-                </td>
-                <td>
-                    <label for="poutine-qty">Quantity</label>
-                    <input type="number" class="quantity-input" min="0" name="poutine-qty">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="">Item 2</label>
-                    <input type="checkbox">
-                </td>
-                <td>
-                    <label for="">Quantity</label>
-                    <input type="number" class="quantity-input" min="0">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="">Item 2</label>
-                    <input type="checkbox">
-                </td>
-                <td>
-                    <label for="">Quantity</label>
-                    <input type="number" class="quantity-input" min="0">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="">Item 4</label>
-                    <input type="checkbox">
-                </td>
-                <td>
-                    <label for="">Quantity</label>
-                    <input type="number" class="quantity-input" min="0">
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2"><button type="submit">Submit</button></td>
-            </tr>
-        </table>
-    </form>
+            <table>
+                <tr>
+                    <td>
+                        <label for="poutine">Poutine</label>
+                        <input type="checkbox" name="poutine" value="Poutine">
+                    </td>
+                    <td>
+                        <label for="poutine-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="poutine-qty">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Item 2</label>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        <label for="">Quantity</label>
+                        <input type="number" class="quantity-input" min="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Item 2</label>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        <label for="">Quantity</label>
+                        <input type="number" class="quantity-input" min="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Item 4</label>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        <label for="">Quantity</label>
+                        <input type="number" class="quantity-input" min="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+
+        <!-- form for "giving" materials -->
+         <form action="./includes/mgivenformhandler.php" id="materials-given-form" method="post" class="forms">
+            <h2>Materials to Give</h2>
+        
+            <table>
+                <tr>
+                    <td>
+                        <label for="poutine">Poutine</label>
+                        <input type="checkbox" name="poutine" value="Poutine">
+                    </td>
+                    <td>
+                        <label for="poutine-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="poutine-qty">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Item 2</label>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        <label for="">Quantity</label>
+                        <input type="number" class="quantity-input" min="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Item 2</label>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        <label for="">Quantity</label>
+                        <input type="number" class="quantity-input" min="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Item 4</label>
+                        <input type="checkbox">
+                    </td>
+                    <td>
+                        <label for="">Quantity</label>
+                        <input type="number" class="quantity-input" min="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
 
     <form action="" class="forms" id="materials-needed-form">
         <h2>Current Items Needed</h2>
