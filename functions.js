@@ -25,33 +25,15 @@ function getData() {
     })
 }
 
-
-// event is automatically passed from eventlistener
-function getMessage(event) {
-    
-    // fetch("includes/mgivenformhandler.php", {
-
-    // })
-    // //returning text, not json
-    // .then(response => response.text())
-    // .then(data => {
-    //     console.log(data);
-    //     alert(data);
-
-    // })
-    // .catch(error => {
-    //     console.log(error);
-    //     alert(error);
-    // })
-}
-
+//handle submitting of materials given form
 document.getElementById("materials-given-form").addEventListener('submit', event => {
     event.preventDefault();
 
-    //serialize form data
+    //serialize form data for sending as POST data
     let formData = new FormData(document.getElementById("materials-given-form"));
     console.log(formData.get('poutine-qty'));
 
+    //send form data to PHP file, and return response if successfully entered in DB or not
     fetch("includes/mgivenformhandler.php", {
         method: 'POST',
         body: formData
@@ -59,7 +41,8 @@ document.getElementById("materials-given-form").addEventListener('submit', event
     //returning text, not json
     .then(response => response.text())
     .then(message => {
-        
+
+        //invalid data submitted (ex: caused quantity to be negative)
         if(message === "invalid"){
             alert("You have given more than is needed. Relax.");
         }
