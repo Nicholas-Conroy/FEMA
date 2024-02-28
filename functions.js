@@ -26,6 +26,24 @@ function getData() {
 }
 
 
+// event is automatically passed from eventlistener
+function getMessage(event) {
+    event.preventDefault();
+    fetch("includes/mgivenformhandler.php", {})
+    //returning text, not json
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        alert(data);
+
+    })
+    .catch(error => {
+        console.log(error);
+        alert(error);
+    })
+}
+
+document.getElementById("materials-given-form").addEventListener('submit', getMessage);
 
 // TODO
 
