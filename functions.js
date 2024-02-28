@@ -28,22 +28,50 @@ function getData() {
 
 // event is automatically passed from eventlistener
 function getMessage(event) {
+    
+    // fetch("includes/mgivenformhandler.php", {
+
+    // })
+    // //returning text, not json
+    // .then(response => response.text())
+    // .then(data => {
+    //     console.log(data);
+    //     alert(data);
+
+    // })
+    // .catch(error => {
+    //     console.log(error);
+    //     alert(error);
+    // })
+}
+
+document.getElementById("materials-given-form").addEventListener('submit', event => {
     event.preventDefault();
-    fetch("includes/mgivenformhandler.php", {})
+
+    //serialize form data
+    let formData = new FormData(document.getElementById("materials-given-form"));
+    console.log(formData.get('poutine-qty'));
+
+    fetch("includes/mgivenformhandler.php", {
+        method: 'POST',
+        body: formData
+    })
     //returning text, not json
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        alert(data);
+    .then(response => response.text())
+    .then(message => {
+        
+        if(message === "invalid"){
+            alert("You have given more than is needed. Relax.");
+        }
+
+        window.location.reload();
 
     })
     .catch(error => {
         console.log(error);
-        alert(error);
+        // alert(error);
     })
-}
-
-document.getElementById("materials-given-form").addEventListener('submit', getMessage);
+});
 
 // TODO
 
