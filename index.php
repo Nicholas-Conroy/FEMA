@@ -26,42 +26,42 @@
             <table>
                 <tr>
                     <td>
-                        <label for="poutine">Poutine</label>
-                        <input type="checkbox" name="poutine" value="Poutine">
+                        <label for="gv-mens">Mens</label>
+                        <input type="checkbox" name="gv-mens" id="gv-mens" class="chkbox" value="Mens">
                     </td>
                     <td>
-                        <label for="poutine-qty">Quantity</label>
-                        <input type="number" class="quantity-input" min="0" name="poutine-qty">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="">Item 2</label>
-                        <input type="checkbox">
-                    </td>
-                    <td>
-                        <label for="">Quantity</label>
-                        <input type="number" class="quantity-input" min="0">
+                        <label for="gv-mens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="gv-mens-qty" id="gv-mens-qty">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="">Item 2</label>
-                        <input type="checkbox">
+                        <label for="gv-womens">Womens</label>
+                        <input type="checkbox" name="gv-womens" id="gv-womens" class="chkbox" value="Womens">
                     </td>
                     <td>
-                        <label for="">Quantity</label>
-                        <input type="number" class="quantity-input" min="0">
+                        <label for="gv-womens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="gv-womens-qty" id="gv-womens-qty">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="">Item 4</label>
-                        <input type="checkbox">
+                        <label for="gv-teens">Teens</label>
+                        <input type="checkbox" name="gv-teens" id="gv-teens" class="chkbox" value="Teens">
                     </td>
                     <td>
-                        <label for="">Quantity</label>
-                        <input type="number" class="quantity-input" min="0">
+                        <label for="gv-teens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="gv-teens-qty" id="gv-teens-qty">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="gv-toddlers">Toddlers</label>
+                        <input type="checkbox" name="gv-toddlers" id="gv-toddlers" class="chkbox" value="Toddlers">
+                    </td>
+                    <td>
+                        <label for="gv-toddlers-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="gv-toddlers-qty" id="gv-toddlers-qty">
                     </td>
                 </tr>
                 <tr>
@@ -75,44 +75,44 @@
             <h2>Materials to Give</h2>
         
             <table>
-                <tr>
+            <tr>
                     <td>
-                        <label for="poutine">Poutine</label>
-                        <input type="checkbox" name="poutine" value="Poutine">
+                        <label for="gv-mens">Mens</label>
+                        <input type="checkbox" name="gv-mens" id="gv-mens" class="chkbox" value="Mens">
                     </td>
                     <td>
-                        <label for="poutine-qty">Quantity</label>
-                        <input type="number" class="quantity-input" min="0" name="poutine-qty">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="">Item 2</label>
-                        <input type="checkbox">
-                    </td>
-                    <td>
-                        <label for="">Quantity</label>
-                        <input type="number" class="quantity-input" min="0">
+                        <label for="gv-mens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="gv-mens-qty" id="gv-mens-qty">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="">Item 2</label>
-                        <input type="checkbox">
+                        <label for="gv-womens">Womens</label>
+                        <input type="checkbox" name="gv-womens" id="gv-womens" class="chkbox" value="Womens">
                     </td>
                     <td>
-                        <label for="">Quantity</label>
-                        <input type="number" class="quantity-input" min="0">
+                        <label for="gv-womens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="gv-womens-qty" id="gv-womens-qty">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="">Item 4</label>
-                        <input type="checkbox">
+                        <label for="gv-teens">Teens</label>
+                        <input type="checkbox" name="gv-teens" id="gv-teens" class="chkbox" value="Teens">
                     </td>
                     <td>
-                        <label for="">Quantity</label>
-                        <input type="number" class="quantity-input" min="0">
+                        <label for="gv-teens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="gv-teens-qty" id="gv-teens-qty">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="gv-toddlers">Toddlers</label>
+                        <input type="checkbox" name="gv-toddlers" id="gv-toddlers" class="chkbox" value="Toddlers">
+                    </td>
+                    <td>
+                        <label for="gv-toddlers-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="gv-toddlers-qty" id="gv-toddlers-qty">
                     </td>
                 </tr>
                 <tr>
@@ -126,19 +126,19 @@
         <h2>Current Items Needed</h2>
         <table>
             <tr>
-                <td>Poutine Needed</td>
+                <td>Mens Clothes</td>
                 <td class="qty-needed"></td>
             </tr>
             <tr>
-                <td>Item 2 Needed</td>
+                <td>Womens Clothes</td>
                 <td class="qty-needed"></td>
             </tr>
             <tr>
-                <td>Item 3 Needed</td>
+                <td>Teens Clothes</td>
                 <td class="qty-needed"></td>
             </tr>
             <tr>
-                <td>Item 4 Needed</td>
+                <td>Toddlers Clothes</td>
                 <td class="qty-needed"></td>
             </tr>
         </table>

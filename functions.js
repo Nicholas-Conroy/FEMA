@@ -25,16 +25,41 @@ function getData() {
     })
 }
 
-//handle submitting of materials given form
-document.getElementById("materials-given-form").addEventListener('submit', event => {
+// handle submitting of materials needed form
+document.getElementById("materials-requested-form").addEventListener('submit', event => {
     event.preventDefault();
 
-    //serialize form data for sending as POST data
-    let formData = new FormData(document.getElementById("materials-given-form"));
-    console.log(formData.get('poutine-qty'));
+    /*
+        ensure that if a material quantity has been submitted, the respective material name checkbox has been checked,
+        and vice versa (checlbox has been checked, must have a quantity selected)
+    */
+    const materialNames = document.getElementById("materials-requested-form").getElementsByClassName("chkbox");
 
-    //send form data to PHP file, and return response if successfully entered in DB or not
-    fetch("includes/mgivenformhandler.php", {
+    for(let i=0; i<materialNames.length; i++){
+        let id = materialNames[i].id;
+        if (materialNames[i].checked) {
+            //all quantity boxes have the same id as the matching material name, with the additon of -qty
+            // check if checked boxes have a value for their quantity
+            if(document.getElementById(id+"-qty").value == "") {
+                alert("you can't do that");
+                window.location.reload();
+                return;
+            }
+        }
+        else {
+            // check if unchecked boxes have no value for their quantity
+            if(document.getElementById(id+"-qty").value != "") {
+                alert("you can't do that");
+                window.location.reload();
+                return;
+            }
+        }
+    }
+    //serialize form data for sending as POST data
+    let formData = new FormData(document.getElementById("materials-requested-form"));
+
+   //send form data to PHP file, and return response if successfully entered in DB or not
+    fetch("includes/mneededformhandler.php", {
         method: 'POST',
         body: formData
     })
@@ -42,11 +67,7 @@ document.getElementById("materials-given-form").addEventListener('submit', event
     .then(response => response.text())
     .then(message => {
 
-        //invalid data submitted (ex: caused quantity to be negative)
-        if(message === "invalid"){
-            alert("You have given more than is needed. Relax.");
-        }
-
+        console.log(message);
         window.location.reload();
 
     })
@@ -54,6 +75,67 @@ document.getElementById("materials-given-form").addEventListener('submit', event
         console.log(error);
         // alert(error);
     })
+
+});
+
+//handle submitting of materials given form
+document.getElementById("materials-given-form").addEventListener('submit', event => {
+    event.preventDefault();
+
+     /*
+        ensure that if a material quantity has been submitted, the respective material name checkbox has been checked,
+        and vice versa (checlbox has been checked, must have a quantity selected)
+    */
+        const materialNames = document.getElementById("materials-given-form").getElementsByClassName("chkbox");
+
+        for(let i=0; i<materialNames.length; i++){
+            let id = materialNames[i].id;
+            console.log(document.getElementById(id+"-qty"));
+            if (materialNames[i].checked) {
+                //all quantity boxes have the same id as the matching material name, with the additon of -qty
+                // check if checked boxes have a value for their quantity
+                if(document.getElementById(id+"-qty").value == "") {
+                    console.log('y');
+                    // alert("you can't do that1");
+                    // window.location.reload();
+                    // return;
+                }
+            }
+            else {
+                // check if unchecked boxes have no value for their quantity
+                if(document.getElementById(id+"-qty").value != "") {
+                    alert("you can't do that2");
+                    window.location.reload();
+                    // return;
+                }
+            }
+        }
+
+
+    //serialize form data for sending as POST data
+    let formData = new FormData(document.getElementById("materials-given-form"));
+
+    //send form data to PHP file, and return response if successfully entered in DB or not
+    // fetch("includes/mgivenformhandler.php", {
+    //     method: 'POST',
+    //     body: formData
+    // })
+    // //returning text, not json
+    // .then(response => response.text())
+    // .then(message => {
+
+    //     //invalid data submitted (ex: caused quantity to be negative)
+    //     if(message === "invalid"){
+    //         alert("You have given more than is needed. Relax.");
+    //     }
+
+    //     window.location.reload();
+
+    // })
+    // .catch(error => {
+    //     console.log(error);
+    //     // alert(error);
+    // })
 });
 
 // TODO
