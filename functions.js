@@ -41,7 +41,7 @@ document.getElementById("materials-requested-form").addEventListener('submit', e
             //all quantity boxes have the same id as the matching material name, with the additon of -qty
             // check if checked boxes have a value for their quantity
             if(document.getElementById(id+"-qty").value == "") {
-                alert("you can't do that");
+                alert("You can't do that");
                 window.location.reload();
                 return;
             }
@@ -49,7 +49,7 @@ document.getElementById("materials-requested-form").addEventListener('submit', e
         else {
             // check if unchecked boxes have no value for their quantity
             if(document.getElementById(id+"-qty").value != "") {
-                alert("you can't do that");
+                alert("You can't do that");
                 window.location.reload();
                 return;
             }
@@ -90,23 +90,22 @@ document.getElementById("materials-given-form").addEventListener('submit', event
 
         for(let i=0; i<materialNames.length; i++){
             let id = materialNames[i].id;
-            console.log(document.getElementById(id+"-qty"));
             if (materialNames[i].checked) {
                 //all quantity boxes have the same id as the matching material name, with the additon of -qty
                 // check if checked boxes have a value for their quantity
                 if(document.getElementById(id+"-qty").value == "") {
-                    console.log('y');
-                    // alert("you can't do that1");
-                    // window.location.reload();
-                    // return;
+                    // console.log('y');
+                    alert("You can't do that");
+                    window.location.reload();
+                    return;
                 }
             }
             else {
                 // check if unchecked boxes have no value for their quantity
                 if(document.getElementById(id+"-qty").value != "") {
-                    alert("you can't do that2");
+                    alert("You can't do that");
                     window.location.reload();
-                    // return;
+                    return;
                 }
             }
         }
@@ -116,26 +115,28 @@ document.getElementById("materials-given-form").addEventListener('submit', event
     let formData = new FormData(document.getElementById("materials-given-form"));
 
     //send form data to PHP file, and return response if successfully entered in DB or not
-    // fetch("includes/mgivenformhandler.php", {
-    //     method: 'POST',
-    //     body: formData
-    // })
-    // //returning text, not json
-    // .then(response => response.text())
-    // .then(message => {
+    fetch("includes/mgivenformhandler.php", {
+        method: 'POST',
+        body: formData
+    })
+    //returning text, not json
+    .then(response => response.text())
+    .then(message => {
 
-    //     //invalid data submitted (ex: caused quantity to be negative)
-    //     if(message === "invalid"){
-    //         alert("You have given more than is needed. Relax.");
-    //     }
+        //invalid data submitted (ex: caused quantity to be negative)
+        if(message === "invalid"){
+            alert("You have given more than is needed. Relax.");
+        }
 
-    //     window.location.reload();
+        console.log(message);
 
-    // })
-    // .catch(error => {
-    //     console.log(error);
-    //     // alert(error);
-    // })
+        window.location.reload();
+
+    })
+    .catch(error => {
+        // console.log(error);
+        alert(error);
+    })
 });
 
 // TODO

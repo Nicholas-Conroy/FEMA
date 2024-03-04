@@ -21,29 +21,31 @@
     try{
         require_once "db.php";
 
-        //list of materials that will be updated as necessary to remove blank fields
+        //will contain only non-empty values, excluding things like quanitity = ""
         $valid_materials = [];
 
-        //remove blank fields, such as quantity = ""
+        //add non-empty fields to valid_materials
         foreach($materials as $label => $value){
+            //excludes empty quantity values (empty checkboxes are not sent as POST data)
             if(!(substr($label, -3) == "qty" && $value == "")){
                 // echo $label . ": " . $value . "\n";
-                // unset($valid_materials[$label]);
-                array_push($valid_materials, $value);
+                array_push($valid_materials, htmlspecialchars($value));
             }
         }
 
         // echo var_dump($valid_materials);
         
+        //update DB with new values
         for($x=0; $x<sizeof($valid_materials); $x += 2){
             //update DB
             $query = "UPDATE materials
             SET quantity_needed = (:qty_added) + quantity_needed
             WHERE material_name = (:material_name); 
             ";
-            // // prepared stmt
+            // prepared stmt
             $stmt = $pdo->prepare($query);
             
+            //
             $stmt->bindParam(":material_name", $valid_materials[$x]);
             $stmt->bindParam(":qty_added", $valid_materials[$x+1]);
     

@@ -26,42 +26,42 @@
             <table>
                 <tr>
                     <td>
-                        <label for="gv-mens">Mens</label>
-                        <input type="checkbox" name="gv-mens" id="gv-mens" class="chkbox" value="Mens">
+                        <label for="rq-mens">Mens</label>
+                        <input type="checkbox" name="rq-mens" id="rq-mens" class="chkbox" value="Mens">
                     </td>
                     <td>
-                        <label for="gv-mens-qty">Quantity</label>
-                        <input type="number" class="quantity-input" min="0" name="gv-mens-qty" id="gv-mens-qty">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="gv-womens">Womens</label>
-                        <input type="checkbox" name="gv-womens" id="gv-womens" class="chkbox" value="Womens">
-                    </td>
-                    <td>
-                        <label for="gv-womens-qty">Quantity</label>
-                        <input type="number" class="quantity-input" min="0" name="gv-womens-qty" id="gv-womens-qty">
+                        <label for="rq-mens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="rq-mens-qty" id="rq-mens-qty">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="gv-teens">Teens</label>
-                        <input type="checkbox" name="gv-teens" id="gv-teens" class="chkbox" value="Teens">
+                        <label for="rq-womens">Womens</label>
+                        <input type="checkbox" name="rq-womens" id="rq-womens" class="chkbox" value="Womens">
                     </td>
                     <td>
-                        <label for="gv-teens-qty">Quantity</label>
-                        <input type="number" class="quantity-input" min="0" name="gv-teens-qty" id="gv-teens-qty">
+                        <label for="rq-womens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="rq-womens-qty" id="rq-womens-qty">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <label for="gv-toddlers">Toddlers</label>
-                        <input type="checkbox" name="gv-toddlers" id="gv-toddlers" class="chkbox" value="Toddlers">
+                        <label for="rq-teens">Teens</label>
+                        <input type="checkbox" name="rq-teens" id="rq-teens" class="chkbox" value="Teens">
                     </td>
                     <td>
-                        <label for="gv-toddlers-qty">Quantity</label>
-                        <input type="number" class="quantity-input" min="0" name="gv-toddlers-qty" id="gv-toddlers-qty">
+                        <label for="rq-teens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="rq-teens-qty" id="rq-teens-qty">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="rq-toddlers">Toddlers</label>
+                        <input type="checkbox" name="rq-toddlers" id="rq-toddlers" class="chkbox" value="Toddlers">
+                    </td>
+                    <td>
+                        <label for="rq-toddlers-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="rq-toddlers-qty" id="rq-toddlers-qty">
                     </td>
                 </tr>
                 <tr>
