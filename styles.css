@@ -31,3 +31,8 @@ tr:nth-child(even) {
 td {
     padding: 5px;
 }
+
+#persons {
+    width: 50%;
+    text-align: center;
+}

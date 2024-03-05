@@ -122,6 +122,7 @@
         </form>
     </div>
 
+    <!-- ************ Does this really need to be a form? *********** -->
     <form action="" class="forms" id="materials-needed-form">
         <h2>Current Items Needed</h2>
         <table>
@@ -144,6 +145,11 @@
         </table>
     </form>
 
+    <div id="persons">
+        <h2>Missing Persons</h2>
+        <table id="persons-table">
+        </table>
+    </div>
     <script src="functions.js"></script>
 </body>
 </html>

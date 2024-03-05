@@ -1,5 +1,4 @@
-<?php 
-
+<?php
     //something like this for security/access denying?
 
     // if(!defined('_BASEPAGE')){
@@ -15,7 +14,7 @@
         //database connection from db.php file
         require_once "db.php";
 
-        $query = "SELECT material_name, quantity_needed FROM materials";
+        $query = "SELECT fname, lname, date_last_seen FROM missing_persons";
 
         $stmt = $pdo->prepare($query);
         $stmt->execute();

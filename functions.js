@@ -1,5 +1,6 @@
 window.onload = event => {
     getData();
+    getPersons();
 }
 
 
@@ -25,6 +26,43 @@ function getData() {
     })
 }
 
+function getPersons(){
+    fetch("includes/personsdata.php", {
+
+    }) 
+    .then(response => response.json())
+    .then(data => {
+        num_of_persons = data.length;
+        console.log(data);
+        //object keys: fname, lname, date_last_seen 
+
+        for(let i=0; i<num_of_persons; i++){
+            //each item in data array is an object with keys and values representing table data
+            const currentRow = data[i];
+            //get length of object (how many key-value pairs) 
+            const rowLength = Object.keys(currentRow).length;
+
+            const tableRow = document.createElement("tr");
+
+            //iterate through currentRow object, adding the values as html elements to the DOM
+            for(const [key, value] of Object.entries(currentRow)){
+
+                const tableCell = document.createElement("td");
+                const pTag = document.createElement("p");
+                let text = document.createTextNode(value);
+                pTag.appendChild(text);
+                tableCell.appendChild(pTag);
+                tableRow.appendChild(tableCell);
+                
+            }
+
+            document.getElementById("persons-table").appendChild(tableRow);
+            // const text = document.createTextNode("words"+i);
+            // tableRow.appendChild(text);
+        }
+        console.log(data.length);
+    })
+}
 // handle submitting of materials needed form
 document.getElementById("materials-requested-form").addEventListener('submit', event => {
     event.preventDefault();
