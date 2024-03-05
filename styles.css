@@ -36,3 +36,7 @@ td {
     width: 50%;
     text-align: center;
 }
+
+#persons table {
+    width: 80%;
+}

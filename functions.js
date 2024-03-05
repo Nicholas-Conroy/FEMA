@@ -3,7 +3,6 @@ window.onload = event => {
     getPersons();
 }
 
-
 function getData() {
     fetch("includes/data.php", {
 
@@ -12,12 +11,31 @@ function getData() {
     .then(data => {
         console.log(data);
 
-        //all table cells that display the quantity needed for a given item
-        const itemsList = document.getElementsByClassName("qty-needed");
+        //counter to keep track of number of rows hidden
+        let rowHiddenCounter = 0;
 
-        //loop through collection of cells
+        //all table rows in table that displays what materials are needed
+        const itemsList = document.getElementsByClassName("needed-table-row");
+
+        //loop through collection of rows
         for (let i=0; i<itemsList.length; i++){
-            itemsList.item(i).innerHTML = data[i].quantity_needed;
+            const currentRow = itemsList.item(i);
+            const qty_cell = currentRow.getElementsByClassName("qty-needed").item(0); //only one qty-needed class item in each row
+
+            //if data for respective row quantity is 0, then remove row
+            if(data[i].quantity_needed == 0){
+                currentRow.style.display = "none";
+                rowHiddenCounter++;
+            }
+            else {
+                qty_cell.innerHTML = data[i].quantity_needed;
+            }
+        }
+
+        //if all rows have been hidden, then display message informing users that no items are currently needed
+        if(rowHiddenCounter == itemsList.length){
+            document.getElementById("message-row").style.display = "table-row";
+            document.getElementById("empty-message").innerHTML = "There are no items needed right now!";
         }
 
     })
@@ -34,7 +52,7 @@ function getPersons(){
     .then(data => {
         num_of_persons = data.length;
         console.log(data);
-        //object keys: fname, lname, date_last_seen 
+        //data row object keys: fname, lname, date_last_seen 
 
         for(let i=0; i<num_of_persons; i++){
             //each item in data array is an object with keys and values representing table data

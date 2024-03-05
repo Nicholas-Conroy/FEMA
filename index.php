@@ -126,21 +126,24 @@
     <form action="" class="forms" id="materials-needed-form">
         <h2>Current Items Needed</h2>
         <table>
-            <tr>
+            <tr class="needed-table-row">
                 <td>Mens Clothes</td>
                 <td class="qty-needed"></td>
             </tr>
-            <tr>
+            <tr class="needed-table-row">
                 <td>Womens Clothes</td>
                 <td class="qty-needed"></td>
             </tr>
-            <tr>
+            <tr class="needed-table-row">
                 <td>Teens Clothes</td>
                 <td class="qty-needed"></td>
             </tr>
-            <tr>
+            <tr class="needed-table-row">
                 <td>Toddlers Clothes</td>
                 <td class="qty-needed"></td>
+            </tr>
+            <tr id="message-row" style="display: none;">
+               <td colspan="2"><p id="empty-message"></p></td> 
             </tr>
         </table>
     </form>
@@ -148,6 +151,11 @@
     <div id="persons">
         <h2>Missing Persons</h2>
         <table id="persons-table">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date Last Seen</th>
+            </tr>
         </table>
     </div>
     <script src="functions.js"></script>
