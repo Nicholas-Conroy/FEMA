@@ -157,6 +157,32 @@
                 <th>Date Last Seen</th>
             </tr>
         </table>
+
+        <div id="update-missing">
+            <button id="add-missing-btn" type="button" onclick="toggleMissingModal()">Add Missing Person</button>
+        </div>
+    </div>
+
+    <div class="modal" id="missing-modal">
+        <!-- <div class="x-btn-container">
+            <button class="x-btn">X</button>
+        </div> -->
+        <form action="./includes/mpersonformhandler.php" class="forms" id="missing-form" method="post">
+            <h4>Enter Information</h4>
+            <div>
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="fname">
+            </div>
+            <div>
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname" id="lname">
+            </div>
+            <div>
+                <label for="date-seen">Date Last Seen</label>
+                <input type="date" name="date-seen" id="date-seen">
+            </div>
+            <button type="submit" name="missing-submit" id="missing-submit">Submit</button>
+        </form>
     </div>
     <script src="functions.js"></script>
 </body>

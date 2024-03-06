@@ -195,7 +195,11 @@ document.getElementById("materials-given-form").addEventListener('submit', event
     })
 });
 
+function toggleMissingModal(){
+    document.getElementById("missing-modal").style.display = "flex";
+}
+
 // TODO
 
 // IDEAS
-//  - check that material name from db matches name in table for respective quantity? ensures things are put in the wrong spot instead of just relying on order
+//  - check that material name from db matches name in table for respective quantity? ensures things aren't put in the wrong spot instead of just relying on order

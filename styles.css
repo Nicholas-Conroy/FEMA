@@ -35,8 +35,50 @@ td {
 #persons {
     width: 50%;
     text-align: center;
+    margin: auto;
+    margin-top: 3em !important;
 }
 
-#persons table {
+#persons-table {
     width: 80%;
+}
+
+#update-missing {
+    display: block;
+    margin-top: 20px;
+}
+
+.modal {
+    display: flex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+#missing-modal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 30%;
+    height: 30%;
+    padding-bottom: 3em;
+    background-color: antiquewhite;
+}
+
+#missing-modal form {
+    margin: 0;
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.x-btn-container {
+    position: relative;
+    width: 100%;
+    display: block;
 }

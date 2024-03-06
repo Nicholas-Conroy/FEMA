@@ -4,10 +4,10 @@
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         // echo $_SERVER["SERVER_NAME"];
         $materials = $_POST;
-        }
+    }
     else {
             header('location: ../index.php');
-        }
+    }
             
     try {
         require_once "db.php";
