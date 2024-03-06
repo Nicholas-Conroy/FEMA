@@ -195,8 +195,15 @@ document.getElementById("materials-given-form").addEventListener('submit', event
     })
 });
 
+//display or hide modal
 function toggleMissingModal(){
-    document.getElementById("missing-modal").style.display = "flex";
+    const modal = document.getElementById("missing-modal");
+    if(getComputedStyle(modal).display == 'none'){
+        modal.style.display = "flex";
+    }
+    else {
+        modal.style.display = "none";
+    }
 }
 
 // TODO
