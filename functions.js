@@ -1,11 +1,16 @@
 window.onload = event => {
-    getData();
-    getPersons();
+    getMaterialsData();
+    getPersonsData();
 }
 
-function getData() {
+function getMaterialsData() {
     fetch("includes/data.php", {
-
+        //send "message" key with value of "materials" to determine what kind of data to receive
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'message=materials'
     })
     .then(response => response.json())
     .then(data => {
@@ -44,9 +49,14 @@ function getData() {
     })
 }
 
-function getPersons(){
-    fetch("includes/personsdata.php", {
-
+function getPersonsData(){
+    fetch("includes/data.php", {
+        //send "message" key with value of "persons" to determine what kind of data to receive
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'message=persons'
     }) 
     .then(response => response.json())
     .then(data => {
