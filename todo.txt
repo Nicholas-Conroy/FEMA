@@ -1,3 +1,9 @@
-Random TODOs
+TODOs
 
 - order missing persons table by the person seen least recently (Completed: includes/data.php - line 29)
+- popup on (normal user) page when community center is low on certain items
+- login system with different pages depending on login type (FEMA, community center, normal user)
+- styling (do later once overall structure of content is in place)
+- alert/popup representing trucks being "notified" when FEMA needs are mat
+- on FEMA page, ability to remove missing persons from list (simply, like just clicking a button or a box next to the name)
+    - on everyone else's page, alert when a person has been found 
