@@ -1,18 +1,8 @@
 <?php
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-        // echo $_SERVER["SERVER_NAME"];
-        // $mens = htmlspecialchars($_POST["mens"]);
-        // $mens_qty = htmlspecialchars($_POST["mens-qty"]);
-        // $womens = htmlspecialchars($_POST["womens"]);
-        // $womens_qty = htmlspecialchars($_POST["womens-qty"]);
-        // $teens = htmlspecialchars($_POST["teens"]);
-        // $teens_qty = htmlspecialchars($_POST["teens-qty"]);
-        // $toddlers = htmlspecialchars($_POST["toddlers"]);
-        // $toddlers_qty = htmlspecialchars($_POST["toddlers-qty"]);
+        //set materials variable equal to POST assoc array (containing form data)
         $materials = $_POST;
-
-
     }
     else {
         header(('Location: ../index.html'));
