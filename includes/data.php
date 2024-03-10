@@ -24,9 +24,9 @@
     
             echo json_encode($result);
         }
-        //get and return missing persons data
+        //get and return missing persons data. Sorts it from least recent to recent. add "DESC" to the end to reverse the order
         else if ($type == 'persons'){
-            $query = "SELECT fname, lname, date_last_seen FROM missing_persons";
+            $query = "SELECT fname, lname, date_last_seen FROM missing_persons ORDER BY date_last_seen";
 
             $stmt = $pdo->prepare($query);
             $stmt->execute();
