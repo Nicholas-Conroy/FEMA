@@ -12,7 +12,7 @@
     try {
         require_once "db.php";
 
-        //will contain only non-empty values, excluding things like quanitity = ""
+        //will contain only non-empty values, excluding things like quantity = ""
         $valid_materials = [];
 
         //add non-empty fields to valid_materials
