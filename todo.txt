@@ -7,3 +7,6 @@ TODOs
 - alert/popup representing trucks being "notified" when FEMA needs are mat
 - on FEMA page, ability to remove missing persons from list (simply, like just clicking a button or a box next to the name)
     - on everyone else's page, alert when a person has been found 
+
+- rewrite/restructure code as necessary for improved readability and layout
+    - use "empty" function instead of current setup for checking if data is empty?
