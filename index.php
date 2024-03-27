@@ -1,9 +1,8 @@
-<?php
-    define('_BASEPAGE', 1);
-    
-?>
-
 <!-- TODO: dont allow user to submit a quantity without checking the respective checkbox -->
+
+<?php
+    require_once "includes/temp.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -147,6 +146,16 @@
             </tr>
         </table>
     </form>
+  
+    <!-- <table>
+        <tr>
+            <th>Material Type</th>
+            <th>Quantity Needed</th>
+        </tr>
+        <?php
+          //  get_materials_needed();
+        ?>
+    </table> -->
 
     <div id="persons">
         <h2>Missing Persons</h2>
@@ -155,13 +164,21 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Date Last Seen</th>
+                <?php if(true){
+                    echo '<th>Mark as Found</th>';
+                }
+                ?>
             </tr>
+            <?php   
+                get_missing_persons();
+            ?>
         </table>
-
+       
         <div id="update-missing">
             <button id="add-missing-btn" type="button" onclick="toggleMissingModal()">Add Missing Person</button>
         </div>
     </div>
+
 
     <div class="modal" id="missing-modal">
         <!-- <div class="x-btn-container">
@@ -183,7 +200,8 @@
             </div>
             <button type="submit" name="missing-submit" id="missing-submit">Submit</button>
         </form>
-    </div>
+    </div>  
+
 
     <script src="functions.js"></script>
 </body>

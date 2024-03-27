@@ -2,7 +2,9 @@ window.onload = event => {
     getMaterialsData();
     getPersonsData();
 }
-
+//****************/
+// Populate items needed table
+//****************/
 function getMaterialsData() {
     fetch("includes/data.php", {
         //send "message" key with value of "materials" to determine what kind of data to receive
@@ -49,48 +51,53 @@ function getMaterialsData() {
     })
 }
 
-function getPersonsData(){
-    fetch("includes/data.php", {
-        //send "message" key with value of "persons" to determine what kind of data to receive
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'message=persons'
-    }) 
-    .then(response => response.json())
-    .then(data => {
-        num_of_persons = data.length;
-        console.log(data);
-        //data row object keys: fname, lname, date_last_seen 
+// function getPersonsData(){
+//     fetch("includes/data.php", {
+//         //send "message" key with value of "persons" to determine what kind of data to receive
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/x-www-form-urlencoded'
+//         },
+//         body: 'message=persons'
+//     }) 
+//     .then(response => response.json())
+//     .then(data => {
+//         num_of_persons = data.length;
+//         console.log(data);
+//         //data row object keys: fname, lname, date_last_seen 
 
-        for(let i=0; i<num_of_persons; i++){
-            //each item in data array is an object with keys and values representing table data
-            const currentRow = data[i];
-            //get length of object (how many key-value pairs) 
-            const rowLength = Object.keys(currentRow).length;
+//         for(let i=0; i<num_of_persons; i++){
+//             //each item in data array is an object with keys and values representing table data
+//             const currentRow = data[i];
+//             //get length of object (how many key-value pairs) 
+//             const rowLength = Object.keys(currentRow).length;
 
-            const tableRow = document.createElement("tr");
+//             const tableRow = document.createElement("tr");
 
-            //iterate through currentRow object, adding the values as html elements to the DOM
-            for(const [key, value] of Object.entries(currentRow)){
+//             //iterate through currentRow object, adding the values as html elements to the DOM
+//             for(const [key, value] of Object.entries(currentRow)){
 
-                const tableCell = document.createElement("td");
-                const pTag = document.createElement("p");
-                let text = document.createTextNode(value);
-                pTag.appendChild(text);
-                tableCell.appendChild(pTag);
-                tableRow.appendChild(tableCell);
+//                 const tableCell = document.createElement("td");
+//                 const pTag = document.createElement("p");
+//                 let text = document.createTextNode(value);
+//                 pTag.appendChild(text);
+//                 tableCell.appendChild(pTag);
+//                 tableRow.appendChild(tableCell);
                 
-            }
+//             }
 
-            document.getElementById("persons-table").appendChild(tableRow);
-            // const text = document.createTextNode("words"+i);
-            // tableRow.appendChild(text);
-        }
-        console.log(data.length);
-    })
-}
+//             document.getElementById("persons-table").appendChild(tableRow);
+//             // const text = document.createTextNode("words"+i);
+//             // tableRow.appendChild(text);
+//         }
+//         console.log(data.length);
+//     })
+// }
+
+//****************/
+// Submit Materials Needed Form
+//****************/
+
 // handle submitting of materials needed form
 document.getElementById("materials-requested-form").addEventListener('submit', event => {
     event.preventDefault();
@@ -143,6 +150,11 @@ document.getElementById("materials-requested-form").addEventListener('submit', e
     })
 
 });
+
+
+//****************/
+// Submit Materials Given Form
+//****************/
 
 //handle submitting of materials given form
 document.getElementById("materials-given-form").addEventListener('submit', event => {
@@ -205,6 +217,59 @@ document.getElementById("materials-given-form").addEventListener('submit', event
     })
 });
 
+let foundChboxes = document.getElementsByClassName("found-chbox");
+
+for(let i=0; i<foundChboxes.length; i++) {
+    foundChboxes[i].addEventListener('click', function(e) {
+        const tableRow = this.parentElement.parentElement;
+        
+        // alert(tableRow);
+        // tableRow.style.display = "none";
+        
+        const childCells = tableRow.children;
+        const NUM_OF_FIELDS = 3; //there are 3 fields in the missing persons table: fname, lname, date last seen
+
+        const personFields = {
+            fname: childCells[0].firstChild.innerHTML,
+            lname: childCells[1].firstChild.innerHTML,
+            date_seen: childCells[2].firstChild.innerHTML
+        };
+
+
+        // for(let j=0; j<NUM_OF_FIELDS; j++){
+        //     // console.log(childCells[j].firstChild.innerHTML);
+        //     let data = childCells[j].firstChild.innerHTML;
+        //     personFields.push(data);
+        // }
+        
+        console.log(personFields);
+
+        fetch("includes/delete_person.php", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: JSON.stringify({personFields})
+        })
+        //returning text, not json
+        .then(response => response.text())
+        .then(message => {
+    
+            console.log(message);
+            window.location.reload();
+    
+        })
+        .catch(error => {
+            console.log(error);
+            // alert(error);
+        });
+    
+    });
+}
+//****************/
+// Add Missing Persons Modal
+//****************/
+
 //display or hide modal
 function toggleMissingModal(){
     const modal = document.getElementById("missing-modal");
@@ -215,6 +280,8 @@ function toggleMissingModal(){
         modal.style.display = "none";
     }
 }
+
+
 
 // TODO
 
