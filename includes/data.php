@@ -4,7 +4,7 @@
         $type = $_POST['message'];
     }
     else {
-        header('Location: ../index.php');
+        header('Location: ../home.php');
     }
 
     try {
@@ -37,7 +37,7 @@
             echo json_encode($result);
         }
         else {
-            header('Location: ../index.php');
+            header('Location: ../home.php');
             die();
         }
 

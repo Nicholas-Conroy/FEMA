@@ -15,11 +15,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     echo $fname . $lname . $date_seen;
 }
 else {
-    header('location: ../index.php');
+    header('location: ../home.php');
 }
 try {
     require_once "db.php";
 
+    //remove person who has now been "found" from db"
     $query = "DELETE from missing_persons where fname = :fname AND lname = :lname AND date_last_seen = :date_seen";
     $stmt = $pdo->prepare($query);
     
@@ -32,7 +33,7 @@ try {
     $stmt = null;
     $pdo = null;
     
-    header('Location: ../index.php');      
+    header('Location: ../home.php');      
         
 }
 catch(PDOException $error) {

@@ -9,7 +9,7 @@
 
     }
     else {
-            header('location: ../index.php');
+            header('location: ../home.php');
     }
 
     try {
@@ -29,7 +29,7 @@
             $stmt = null;
             $pdo = null;
     
-            header('Location: ../index.php');
+            header('Location: ../home.php');
     }
     catch(PDOException $error) {
         die($error->getMessage());

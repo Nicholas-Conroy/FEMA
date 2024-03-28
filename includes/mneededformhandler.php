@@ -5,7 +5,7 @@
         $materials = $_POST;
     }
     else {
-        header(('Location: ../index.html'));
+        header(('Location: ../home.php'));
     }
 
     try{
@@ -54,7 +54,7 @@
 
         echo "successful";
         // // send user back to main page
-        // header(('Location: ../index.php'));
+        // header(('Location: ../home.php'));
 
         die();
     }

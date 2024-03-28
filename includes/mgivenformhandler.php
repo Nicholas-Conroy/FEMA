@@ -6,7 +6,7 @@
         $materials = $_POST;
     }
     else {
-            header('location: ../index.php');
+            header('location: ../');
     }
             
     try {
@@ -51,7 +51,7 @@
                     // echo "less!";
                     // $msg = "message";
                     echo "invalid";
-                    // header(('Location: ../index.php'));
+                    // header(('Location: ../'));
                     die();
                 }
             }
@@ -83,7 +83,7 @@
 
         echo "successful";
 
-        //no need to use header to send back to index.php, reload happens through JS
+        //no need to use header to send back to , reload happens through JS
 
         die();
     }
