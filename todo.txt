@@ -10,3 +10,5 @@ TODOs
 
 - rewrite/restructure code as necessary for improved readability and layout
     - use "empty" function instead of current setup for checking if data is empty?
+
+- don't allow manual access to home.php without logging in
