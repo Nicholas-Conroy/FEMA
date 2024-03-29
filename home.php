@@ -2,6 +2,12 @@
 
 <?php
     require_once "includes/temp.php";
+    require_once "includes/config_session.inc.php";
+
+    //if user is not logged in and tries to access page, they are returned to login page
+    if(!isset($_SESSION["user_id"])) { //set on login.inc.php
+        header("Location: ./index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -18,11 +24,18 @@
     <form action="includes/logout.inc.php" method="post">
         <button>Logout</button>
     </form>
-    
-    <h1 style="text-align: center; margin-top: 1em;">FEMA</h1>
+    <?php 
+        if($_SESSION["user_username"] === "fema"){
+            echo "FEMA";
+        }
+    ?>
 
-    <!-- form for requesting materials -->
+    <h1 style="text-align: center; margin-top: 1em;">FEMA</h1>
+    
     <div id="material-forms">
+    <?php 
+        if($_SESSION["user_username"] === "fema"){ ?>
+        <!-- form for requesting materials -->
         <form action="./includes/mneededformhandler.php" id="materials-requested-form" method="post" class="forms">
             <h2>Materials Needed</h2>
         
@@ -72,6 +85,7 @@
                 </tr>
             </table>
         </form>
+        <?php } ?>
 
         <!-- form for "giving" materials -->
          <form action="./includes/mgivenformhandler.php" id="materials-given-form" method="post" class="forms">
@@ -168,7 +182,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Date Last Seen</th>
-                <?php if(true){
+                <?php if($_SESSION["user_username"] === "fema"){
                     echo '<th>Mark as Found</th>';
                 }
                 ?>
@@ -178,33 +192,42 @@
             ?>
         </table>
        
-        <div id="update-missing">
-            <button id="add-missing-btn" type="button" onclick="toggleMissingModal()">Add Missing Person</button>
-        </div>
+        <?php
+        //only display this if user is logged in as fema
+            if($_SESSION["user_username"] === "fema"){ ?>
+                    <div id="update-missing">
+                        <button id="add-missing-btn" type="button" onclick="toggleMissingModal()">Add Missing Person</button>
+                    </div>
+                
+           <?php } ?>
     </div>
 
+    <?php
+    //only display this if user is logged in as fema
+        if($_SESSION["user_username"] === "fema"){ ?>
+                <div class="modal" id="missing-modal">
+                    <!-- <div class="x-btn-container">
+                        <button class="x-btn">X</button>
+                    </div> -->
+                    <form action="./includes/mpersonformhandler.php" class="forms" id="missing-form" method="post">
+                        <h4>Enter Information</h4>
+                        <div>
+                            <label for="fname">First Name</label>
+                            <input type="text" id="fname" name="fname">
+                        </div>
+                        <div>
+                            <label for="lname">Last Name</label>
+                            <input type="text" name="lname" id="lname">
+                        </div>
+                        <div>
+                            <label for="date-seen">Date Last Seen</label>
+                            <input type="date" name="date-seen" id="date-seen">
+                        </div>
+                        <button type="submit" name="missing-submit" id="missing-submit">Submit</button>
+                    </form>
+                </div>  
+      <?php  } ?>
 
-    <div class="modal" id="missing-modal">
-        <!-- <div class="x-btn-container">
-            <button class="x-btn">X</button>
-        </div> -->
-        <form action="./includes/mpersonformhandler.php" class="forms" id="missing-form" method="post">
-            <h4>Enter Information</h4>
-            <div>
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" name="fname">
-            </div>
-            <div>
-                <label for="lname">Last Name</label>
-                <input type="text" name="lname" id="lname">
-            </div>
-            <div>
-                <label for="date-seen">Date Last Seen</label>
-                <input type="date" name="date-seen" id="date-seen">
-            </div>
-            <button type="submit" name="missing-submit" id="missing-submit">Submit</button>
-        </form>
-    </div>  
 
 
     <script src="functions.js"></script>

@@ -1,6 +1,5 @@
 <?php
 
-
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         // echo $_SERVER["SERVER_NAME"];
         $materials = $_POST;
@@ -48,7 +47,6 @@
             foreach($result as $row){
                 $item_number = $row["quantity_needed"];
                 if(intval($item_number) - intval($cur_qty) < 0){
-                    // echo "less!";
                     // $msg = "message";
                     echo "invalid";
                     // header(('Location: ../'));

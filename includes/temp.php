@@ -2,6 +2,8 @@
 error_reporting(E_ALL); 
 ini_set('display_errors', 1);
 
+require_once "config_session.inc.php";
+
 // function get_materials_needed(){
 //     require_once "db.php";
 
@@ -24,7 +26,6 @@ ini_set('display_errors', 1);
 //     }
 // }
 
-
 //display missing persons in a table
 function get_missing_persons() {
     require_once "db.php";
@@ -39,7 +40,7 @@ function get_missing_persons() {
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($results as $row) {
-        if($var) {
+        if($_SESSION["user_username"] === "fema") {
             echo '
                 <tr>
                     <td><p>' . $row["fname"] . '</p></td>
