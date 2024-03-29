@@ -218,8 +218,10 @@ document.getElementById("materials-given-form").addEventListener('submit', event
     })
 });
 
+//checkboxes for each missing person in table
 let foundChboxes = document.getElementsByClassName("found-chbox");
 
+//when a given checkbox is selected, remove the entry from the db and reload the page
 for(let i=0; i<foundChboxes.length; i++) {
     foundChboxes[i].addEventListener('click', function(e) {
         const tableRow = this.parentElement.parentElement;
@@ -229,41 +231,43 @@ for(let i=0; i<foundChboxes.length; i++) {
         
         const childCells = tableRow.children;
         const NUM_OF_FIELDS = 3; //there are 3 fields in the missing persons table: fname, lname, date last seen
-
+        
+        //object with person fields, data to be sent to PHP for db query
         const personFields = {
             fname: childCells[0].firstChild.innerHTML,
             lname: childCells[1].firstChild.innerHTML,
             date_seen: childCells[2].firstChild.innerHTML
         };
-
-
-        // for(let j=0; j<NUM_OF_FIELDS; j++){
-        //     // console.log(childCells[j].firstChild.innerHTML);
-        //     let data = childCells[j].firstChild.innerHTML;
-        //     personFields.push(data);
-        // }
         
-        console.log(personFields);
-
-        fetch("includes/delete_person.php", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: JSON.stringify({personFields})
-        })
-        //returning text, not json
-        .then(response => response.text())
-        .then(message => {
-    
-            console.log(message);
-            window.location.reload();
-    
-        })
-        .catch(error => {
-            console.log(error);
-            // alert(error);
-        });
+        //allow user to cancel remove request
+        if(confirm(`Are you sure you want to mark ${personFields.fname} ${personFields.lname} as found?`)){
+            console.log(personFields);
+            
+            //send data to PHP file
+            fetch("includes/delete_person.php", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: JSON.stringify({personFields})
+            })
+            //returning text, not json
+            .then(response => response.text())
+            .then(message => {
+        
+                console.log(message);
+                window.location.reload();
+        
+            })
+            .catch(error => {
+                console.log(error);
+                // alert(error);
+            });
+        }
+        else {
+            this.checked = false;
+        }
+        
     
     });
 }
