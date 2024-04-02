@@ -1,7 +1,7 @@
 <!-- TODO: dont allow user to submit a quantity without checking the respective checkbox -->
 
 <?php
-    require_once "includes/temp.php";
+    require_once "includes/data.php";
     require_once "includes/config_session.inc.php";
 
     //if user is not logged in and tries to access page, they are returned to login page
@@ -85,7 +85,7 @@
         </form>
         <?php } ?>
 
-        <!-- form for "giving" materials -->
+        <!-- form for "giving" materials to fema -->
         <?php 
             if(!$_SESSION["user_username"] === "fema"){ ?>
          <form action="./includes/mgivenformhandler.php" id="materials-given-form" method="post" class="forms">
