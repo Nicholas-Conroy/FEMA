@@ -4,32 +4,31 @@ ini_set('display_errors', 1);
 
 require_once "config_session.inc.php";
 
-// function get_materials_needed(){
-//     require_once "db.php";
+function get_materials_needed(){
+    require "db.php";
 
-//     $query = "SELECT material_name, quantity_needed FROM materials";
+    $query = "SELECT material_name, quantity_needed FROM materials";
     
-//     $stmt = $pdo->prepare($query);
-//     $stmt->execute();
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
 
-//     //get all rows of data returned from query as associative array 
-//     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    //get all rows of data returned from query as associative array 
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//     foreach ($results as $row) {
-//         echo "
-//             <tr>
-//                 <td>" . $row['material_name'] . " Clothes</td>
-//                 <td>" . $row['quantity_needed'] . "</td>
-//             </tr>
-//         ";
+    foreach ($results as $row) {
+        echo "
+            <tr>
+                <td><p>" . $row['material_name'] . " Clothes</p></td>
+                <td><p>" . $row['quantity_needed'] . "</p></td>
+            </tr>
+        ";
 
-//     }
-// }
+    }
+}
 
 //display missing persons in a table
 function get_missing_persons() {
-    require_once "db.php";
-    $var = true;
+    require "db.php";
 
     $query = "SELECT fname, lname, date_last_seen FROM missing_persons ORDER BY date_last_seen";
 
@@ -62,4 +61,30 @@ function get_missing_persons() {
 
     }
     // echo json_encode($result);
+}
+
+
+function get_comm_center_data() {
+    require "db.php";
+    
+    $query = "SELECT center_name, mens_clothes_qty, womens_clothes_qty, teens_clothes_qty, toddlers_clothes_qty 
+    FROM comm_centers;";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+
+    //get all rows of data returned from query as associative array 
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($results as $row) {
+        echo '
+            <tr>
+                <td><p>' . $row["center_name"] . '</p></td>
+                <td><p>' . $row["mens_clothes_qty"] . '</p></td>
+                <td><p>' . $row["womens_clothes_qty"] . '</p></td>   
+                <td><p>' . $row["teens_clothes_qty"] . '</p></td>   
+                <td><p>' . $row["toddlers_clothes_qty"] . '</p></td>    
+            </tr>
+        ';
+    }
 }

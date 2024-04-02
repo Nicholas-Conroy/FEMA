@@ -25,9 +25,7 @@
         <button>Logout</button>
     </form>
     <?php 
-        if($_SESSION["user_username"] === "fema"){
-            echo "FEMA";
-        }
+        echo 'You are logged in as ' . $_SESSION["user_username"];
     ?>
 
     <h1 style="text-align: center; margin-top: 1em;">FEMA</h1>
@@ -88,6 +86,8 @@
         <?php } ?>
 
         <!-- form for "giving" materials -->
+        <?php 
+            if(!$_SESSION["user_username"] === "fema"){ ?>
          <form action="./includes/mgivenformhandler.php" id="materials-given-form" method="post" class="forms">
             <h2>Materials to Give</h2>
         
@@ -137,43 +137,42 @@
                 </tr>
             </table>
         </form>
+        <?php } ?>
+    </div>
+    <br><br>
+
+    <!-- community center materials -->
+    <div id="comm-center-info">
+        <h2>Community Centers</h2>
+        <table>
+            <tr>
+                <th>Center Name</th>
+                <th>Men's Clothing Available</th>
+                <th>Women's Clothing Available</th>
+                <th>Teens' Clothing Available</th>
+                <th>Toddlers' Clothing Available</th>
+            </tr>
+            <?php
+                get_comm_center_data(); 
+            ?>
+        </table>
     </div>
 
-    <!-- ************ Does this really need to be a form? *********** -->
-    <form action="" class="forms" id="materials-needed-form">
-        <h2>Current Items Needed</h2>
-        <table>
-            <tr class="needed-table-row">
-                <td>Mens Clothes</td>
-                <td class="qty-needed"></td>
-            </tr>
-            <tr class="needed-table-row">
-                <td>Womens Clothes</td>
-                <td class="qty-needed"></td>
-            </tr>
-            <tr class="needed-table-row">
-                <td>Teens Clothes</td>
-                <td class="qty-needed"></td>
-            </tr>
-            <tr class="needed-table-row">
-                <td>Toddlers Clothes</td>
-                <td class="qty-needed"></td>
-            </tr>
-            <tr id="message-row" style="display: none;">
-               <td colspan="2"><p id="empty-message"></p></td> 
-            </tr>
-        </table>
-    </form>
+    <br><br>
   
-    <!-- <table>
-        <tr>
-            <th>Material Type</th>
-            <th>Quantity Needed</th>
-        </tr>
-        <?php
-          //  get_materials_needed();
-        ?>
-    </table> -->
+    <!-- materials needed by fema table -->
+    <div id="materials-needed-table">
+        <table>
+            <h2>Materials Needed by FEMA</h2>
+            <tr>
+                <th>Material Type</th>
+                <th>Quantity Needed</th>
+            </tr>
+            <?php
+               get_materials_needed();
+            ?>
+        </table>
+    </div>
 
     <div id="persons">
         <h2>Missing Persons</h2>
