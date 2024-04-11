@@ -13,4 +13,4 @@ TODOs
 
 - don't allow manual access to home.php without logging in
 
-- you can submit empty forms which doesn't really matter but still, maybe should have a warning
+- you can submit empty forms which doesn't really matter but still, maybe should have a warning (do PHP fix, maybe using functions from a file)

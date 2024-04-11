@@ -23,8 +23,10 @@
             }
         }
 
-        
-        //update DB with new values
+        //***********************/
+        // Check potential resulting values after using DB values
+        //***********************/
+
         //valid materials array has pattern of [material name, qty, material name, qty, ...]
         for($x=0; $x<sizeof($valid_materials); $x += 2){
             $cur_material_name = $valid_materials[$x];

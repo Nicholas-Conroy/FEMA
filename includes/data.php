@@ -60,31 +60,70 @@ function get_missing_persons() {
         }
 
     }
-    // echo json_encode($result);
 }
 
-
+//populate community center materials table
 function get_comm_center_data() {
+    echo "hi";
     require "db.php";
     
-    $query = "SELECT center_name, mens_clothes_qty, womens_clothes_qty, teens_clothes_qty, toddlers_clothes_qty 
-    FROM comm_centers;";
+    // $query = "SELECT center_name, mens_clothes_qty, womens_clothes_qty, teens_clothes_qty, toddlers_clothes_qty 
+    // FROM comm_centers;";
+    
+    
+    $query1 = "SELECT center_name FROM comm_centers GROUP BY center_id;";
+    
+    $stmt1 = $pdo->prepare($query1);
+    $stmt1->execute();
+    
+    //get all rows of data returned from query as associative array 
+    $names = $stmt1->fetchAll(PDO::FETCH_ASSOC);
+    
+    foreach($names as $name){
+        
+        $query2 = "SELECT material_name, quantity FROM comm_centers WHERE center_name = :center_name";
+        
+        $stmt2 = $pdo->prepare($query2);
+        $stmt2->bindParam(":center_name", $name["center_name"]);
+        $stmt2->execute();
+        
+        $results = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+        
+        $center_materials = [];
+
+        foreach ($results as $row) {
+           array_push($center_materials, $row["quantity"]);
+        }
+
+        echo '
+            <tr>
+                <td><p>' . $name["center_name"] . '</p></td>
+                <td><p>' . $center_materials[0] . '</p></td>
+                <td><p>' . $center_materials[1] . '</p></td>
+                <td><p>' . $center_materials[2] . '</p></td>
+                <td><p>' . $center_materials[3] . '</p></td>
+        ';
+    }
+}
+
+//get names of community center and output them as options for user to select
+function get_comm_center_names() {
+    require "db.php";
+    
+    //use group by to only have each name return once
+    $query = "SELECT center_id, center_name FROM comm_centers GROUP BY center_id;";
 
     $stmt = $pdo->prepare($query);
     $stmt->execute();
 
     //get all rows of data returned from query as associative array 
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    echo '<option selected disabled>Choose Community Center</option>';
 
     foreach ($results as $row) {
         echo '
-            <tr>
-                <td><p>' . $row["center_name"] . '</p></td>
-                <td><p>' . $row["mens_clothes_qty"] . '</p></td>
-                <td><p>' . $row["womens_clothes_qty"] . '</p></td>   
-                <td><p>' . $row["teens_clothes_qty"] . '</p></td>   
-                <td><p>' . $row["toddlers_clothes_qty"] . '</p></td>    
-            </tr>
+            <option value="' . $row["center_id"] . '">' . $row["center_name"] . '</option>
         ';
     }
 }

@@ -4,6 +4,8 @@
     require_once "includes/data.php";
     require_once "includes/config_session.inc.php";
 
+    error_reporting(E_ALL); 
+ini_set('display_errors', 1);
     //if user is not logged in and tries to access page, they are returned to login page
     if(!isset($_SESSION["user_id"])) { //set on login.inc.php
         header("Location: ./index.php");
@@ -87,7 +89,7 @@
 
         <!-- form for "giving" materials to fema -->
         <?php 
-            if(!$_SESSION["user_username"] === "fema"){ ?>
+            if($_SESSION["user_username"] !== "fema"){ ?>
          <form action="./includes/mgivenformhandler.php" id="materials-given-form" method="post" class="forms">
             <h2>Materials to Give</h2>
         
@@ -140,6 +142,69 @@
         <?php } ?>
     </div>
     <br><br>
+
+    <!-- form to donate to community center -->
+    <form action="./includes/ccenter_donate_formhandler.php" id="ccenter-donate-form" method="post" class="forms">
+            <h2>Donate to Community Center</h2>
+            <table>
+                <tr>
+                    <td>
+                        <label for="cc-names">Donate to:</label>
+                        <select name="cc-names" id="cc-names">
+                            <?php
+                        get_comm_center_names();
+                            ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cc-mens">Mens</label>
+                        <input type="checkbox" name="cc-mens" id="cc-mens" class="chkbox" value="Mens">
+                    </td>
+                    <td>
+                        <label for="cc-mens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="cc-mens-qty" id="cc-mens-qty">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cc-womens">Womens</label>
+                        <input type="checkbox" name="cc-womens" id="cc-womens" class="chkbox" value="Womens">
+                    </td>
+                    <td>
+                        <label for="cc-womens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="cc-womens-qty" id="cc-womens-qty">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cc-teens">Teens</label>
+                        <input type="checkbox" name="cc-teens" id="cc-teens" class="chkbox" value="Teens">
+                    </td>
+                    <td>
+                        <label for="cc-teens-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="cc-teens-qty" id="cc-teens-qty">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cc-toddlers">Toddlers</label>
+                        <input type="checkbox" name="cc-toddlers" id="cc-toddlers" class="chkbox" value="Toddlers">
+                    </td>
+                    <td>
+                        <label for="cc-toddlers-qty">Quantity</label>
+                        <input type="number" class="quantity-input" min="0" name="cc-toddlers-qty" id="cc-toddlers-qty">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit" id="m-given-submit">Submit</button></td>
+                </tr>
+            </table>
+        </form>
+
+    
+        <br><br>
 
     <!-- community center materials -->
     <div id="comm-center-info">

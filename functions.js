@@ -1,8 +1,3 @@
-window.onload = event => {
-    getMaterialsData();
-    getPersonsData();
-}
-
 //****************/
 // Submit Materials Needed Form
 //****************/
@@ -14,7 +9,7 @@ if(document.getElementById("materials-requested-form")){ //ensure form exists in
 
         /*
             ensure that if a material quantity has been submitted, the respective material name checkbox has been checked,
-            and vice versa (checlbox has been checked, must have a quantity selected)
+            and vice versa (checkbox has been checked, must have a quantity selected)
         */
         const materialNames = document.getElementById("materials-requested-form").getElementsByClassName("chkbox");
 
@@ -24,7 +19,7 @@ if(document.getElementById("materials-requested-form")){ //ensure form exists in
                 //all quantity boxes have the same id as the matching material name, with the additon of -qty
                 // check if checked boxes have a value for their quantity
                 if(document.getElementById(id+"-qty").value == "") {
-                    alert("You can't do that");
+                    alert("Please fill out form correctly");
                     window.location.reload();
                     return;
                 }
@@ -32,7 +27,7 @@ if(document.getElementById("materials-requested-form")){ //ensure form exists in
             else {
                 // check if unchecked boxes have no value for their quantity
                 if(document.getElementById(id+"-qty").value != "") {
-                    alert("You can't do that");
+                    alert("Please fill out form correctly");
                     window.location.reload();
                     return;
                 }
@@ -68,13 +63,94 @@ if(document.getElementById("materials-requested-form")){ //ensure form exists in
 //****************/
 
 //handle submitting of materials given form
-document.getElementById("materials-given-form").addEventListener('submit', event => {
-    event.preventDefault();
-     /*
-        ensure that if a material quantity has been submitted, the respective material name checkbox has been checked,
-        and vice versa (checlbox has been checked, must have a quantity selected)
-    */
-        const materialNames = document.getElementById("materials-given-form").getElementsByClassName("chkbox");
+if(document.getElementById("materials-given-form")){ //ensure form exists in DOM, depends on who is logged in 
+    document.getElementById("materials-given-form").addEventListener('submit', event => {
+        event.preventDefault();
+        /*
+            ensure that if a material quantity has been submitted, the respective material name checkbox has been checked,
+            and vice versa (checlbox has been checked, must have a quantity selected)
+        */
+            const materialNames = document.getElementById("materials-given-form").getElementsByClassName("chkbox");
+
+            for(let i=0; i<materialNames.length; i++){
+                let id = materialNames[i].id;
+                if (materialNames[i].checked) {
+                    //all quantity boxes have the same id as the matching material name, with the additon of -qty
+                    // check if checked boxes have a value for their quantity
+                    if(document.getElementById(id+"-qty").value == "") {
+                        // console.log('y');
+                        alert("Please fill out form correctly");
+                        window.location.reload();
+                        return;
+                    }
+                }
+                else {
+                    // check if unchecked boxes have no value for their quantity
+                    if(document.getElementById(id+"-qty").value != "") {
+                        alert("Please fill out form correctly");
+                        window.location.reload();
+                        return;
+                    }
+                }
+            }
+
+
+        //serialize form data for sending as POST data
+        let formData = new FormData(document.getElementById("materials-given-form"));
+
+        //send form data to PHP file, and return response if successfully entered in DB or not
+        fetch("includes/mgivenformhandler.php", {
+            method: 'POST',
+            body: formData
+        })
+        //returning text, not json
+        .then(response => response.text())
+        .then(message => {
+
+            //invalid data submitted (ex: caused quantity to be negative)
+            if(message === "invalid"){
+                alert("You have given more than is needed. Relax.");
+            }
+
+            console.log(message);
+
+            window.location.reload();
+
+        })
+        .catch(error => {
+            // console.log(error);
+            alert(error);
+        })
+    });
+}
+
+//****************/
+// Handle submitting of donate to ccenter form
+//****************/
+
+if(document.getElementById("ccenter-donate-form")){ //ensure form exists in DOM
+    document.getElementById("ccenter-donate-form").addEventListener('submit', event => {
+        event.preventDefault();
+
+        // ensure that a community center was selected, alert and do not submit otherwise
+        const ccenterList = document.getElementById("cc-names");
+        let optionChecked = false;
+        for(let i=1; i<ccenterList.length; i++) {
+            if(ccenterList[i].selected) {
+                optionChecked = true;
+            }
+        }
+
+        //alert if no center selected
+        if(!optionChecked) {
+            alert("Please Select a Community Center");
+            return;
+        }
+        /*
+            ensure that if a material quantity has been submitted, the respective material name checkbox has been checked,
+            and vice versa (checlbox has been checked, must have a quantity selected)
+        */
+        const materialNames = document.getElementById("ccenter-donate-form").getElementsByClassName("chkbox");
 
         for(let i=0; i<materialNames.length; i++){
             let id = materialNames[i].id;
@@ -82,8 +158,7 @@ document.getElementById("materials-given-form").addEventListener('submit', event
                 //all quantity boxes have the same id as the matching material name, with the additon of -qty
                 // check if checked boxes have a value for their quantity
                 if(document.getElementById(id+"-qty").value == "") {
-                    // console.log('y');
-                    alert("You can't do that");
+                    alert("Please fill out form correctly");
                     window.location.reload();
                     return;
                 }
@@ -91,41 +166,41 @@ document.getElementById("materials-given-form").addEventListener('submit', event
             else {
                 // check if unchecked boxes have no value for their quantity
                 if(document.getElementById(id+"-qty").value != "") {
-                    alert("You can't do that");
+                    alert("Please fill out form correctly");
                     window.location.reload();
                     return;
                 }
             }
         }
-
-
-    //serialize form data for sending as POST data
-    let formData = new FormData(document.getElementById("materials-given-form"));
+        //serialize form data for sending as POST data
+        let formData = new FormData(document.getElementById("ccenter-donate-form"));
 
     //send form data to PHP file, and return response if successfully entered in DB or not
-    fetch("includes/mgivenformhandler.php", {
-        method: 'POST',
-        body: formData
-    })
-    //returning text, not json
-    .then(response => response.text())
-    .then(message => {
+        fetch("includes/ccenter_donate_formhandler.php", {
+            method: 'POST',
+            body: formData
+        })
+        //returning text, not json
+        .then(response => response.text())
+        .then(message => {
 
-        //invalid data submitted (ex: caused quantity to be negative)
-        if(message === "invalid"){
-            alert("You have given more than is needed. Relax.");
-        }
+            if(message === "no center chosen") {
+                // console.log('y');
+                alert("Please Select a Community Center");
+                window.location.reload();
+                return;
+            }
+            console.log(message);
+            window.location.reload();
 
-        console.log(message);
+        })
+        .catch(error => {
+            console.log(error);
+            // alert(error);
+        })
 
-        window.location.reload();
-
-    })
-    .catch(error => {
-        // console.log(error);
-        alert(error);
-    })
-});
+    });
+}
 
 //checkboxes for each missing person in table
 let foundChboxes = document.getElementsByClassName("found-chbox");
@@ -176,8 +251,6 @@ for(let i=0; i<foundChboxes.length; i++) {
         else {
             this.checked = false;
         }
-        
-    
     });
 }
 //****************/
