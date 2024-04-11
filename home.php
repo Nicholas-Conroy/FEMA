@@ -5,7 +5,7 @@
     require_once "includes/config_session.inc.php";
 
     error_reporting(E_ALL); 
-ini_set('display_errors', 1);
+    ini_set('display_errors', 1);
     //if user is not logged in and tries to access page, they are returned to login page
     if(!isset($_SESSION["user_id"])) { //set on login.inc.php
         header("Location: ./index.php");
@@ -31,6 +31,21 @@ ini_set('display_errors', 1);
     ?>
 
     <h1 style="text-align: center; margin-top: 1em;">FEMA</h1>
+    <br>
+    
+    <!-- materials needed by fema table -->
+    <div id="materials-needed-table">
+        <table>
+            <h2>Materials Needed by FEMA</h2>
+            <tr>
+                <th>Material Type</th>
+                <th>Quantity Needed</th>
+            </tr>
+            <?php
+               get_materials_needed();
+            ?>
+        </table>
+    </div>
     
     <div id="material-forms">
     <?php 
@@ -91,10 +106,20 @@ ini_set('display_errors', 1);
         <?php 
             if($_SESSION["user_username"] !== "fema"){ ?>
          <form action="./includes/mgivenformhandler.php" id="materials-given-form" method="post" class="forms">
-            <h2>Materials to Give</h2>
+            <h2>Materials to Give to FEMA</h2>
         
             <table>
-            <tr>
+                <tr>
+                    <td colspan="2">
+                        <label for="cc-names">Choose Center to Donate From: </label>
+                        <select name="cc-names" id="cc-names">
+                            <?php
+                        get_comm_center_names();
+                            ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         <label for="gv-mens">Mens</label>
                         <input type="checkbox" name="gv-mens" id="gv-mens" class="chkbox" value="Mens">
@@ -144,11 +169,13 @@ ini_set('display_errors', 1);
     <br><br>
 
     <!-- form to donate to community center -->
+    <?php 
+            if($_SESSION["user_username"] !== "fema"){ ?>
     <form action="./includes/ccenter_donate_formhandler.php" id="ccenter-donate-form" method="post" class="forms">
             <h2>Donate to Community Center</h2>
             <table>
                 <tr>
-                    <td>
+                    <td colspan="2">
                         <label for="cc-names">Donate to:</label>
                         <select name="cc-names" id="cc-names">
                             <?php
@@ -202,6 +229,7 @@ ini_set('display_errors', 1);
                 </tr>
             </table>
         </form>
+        <?php } ?>
 
     
         <br><br>
@@ -224,20 +252,6 @@ ini_set('display_errors', 1);
     </div>
 
     <br><br>
-  
-    <!-- materials needed by fema table -->
-    <div id="materials-needed-table">
-        <table>
-            <h2>Materials Needed by FEMA</h2>
-            <tr>
-                <th>Material Type</th>
-                <th>Quantity Needed</th>
-            </tr>
-            <?php
-               get_materials_needed();
-            ?>
-        </table>
-    </div>
 
     <div id="persons">
         <h2>Missing Persons</h2>

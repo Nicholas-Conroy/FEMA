@@ -22,6 +22,7 @@
             die();
         }
 
+        //remove first item from materials array, which is community center ID (only want material info in this array)
         array_shift($materials);
 
         //will contain only non-empty values, excluding things like quanitity = ""

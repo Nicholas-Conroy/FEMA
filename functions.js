@@ -66,6 +66,22 @@ if(document.getElementById("materials-requested-form")){ //ensure form exists in
 if(document.getElementById("materials-given-form")){ //ensure form exists in DOM, depends on who is logged in 
     document.getElementById("materials-given-form").addEventListener('submit', event => {
         event.preventDefault();
+
+        // ensure that a community center was selected, alert and do not submit otherwise
+        const ccenterList = document.getElementById("cc-names");
+        let optionChecked = false;
+        for(let i=1; i<ccenterList.length; i++) {
+            if(ccenterList[i].selected) {
+                optionChecked = true;
+            }
+        }
+
+        //alert if no center selected
+        if(!optionChecked) {
+            alert("Please Select a Community Center");
+            return;
+        }
+
         /*
             ensure that if a material quantity has been submitted, the respective material name checkbox has been checked,
             and vice versa (checlbox has been checked, must have a quantity selected)
@@ -108,9 +124,13 @@ if(document.getElementById("materials-given-form")){ //ensure form exists in DOM
         .then(message => {
 
             //invalid data submitted (ex: caused quantity to be negative)
-            if(message === "invalid"){
+            if(message === "not_enough_resources"){
+                alert("I said we don't have the capacity");
+            }
+            else if(message === "invalid"){
                 alert("You have given more than is needed. Relax.");
             }
+            
 
             console.log(message);
 
