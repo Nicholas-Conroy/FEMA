@@ -64,7 +64,6 @@ function get_missing_persons() {
 
 //populate community center materials table
 function get_comm_center_data() {
-    echo "hi";
     require "db.php";
     
     // $query = "SELECT center_name, mens_clothes_qty, womens_clothes_qty, teens_clothes_qty, toddlers_clothes_qty 

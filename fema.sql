@@ -25,7 +25,8 @@ CREATE table missing_persons
  `created_at` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP , 
  PRIMARY KEY (`ID`));
 
- CREATE comm_centers 
+-- **fix/update this**
+ CREATE TABLE comm_centers 
  (`ID` INT NOT NULL AUTO_INCREMENT , 
  `center_name` VARCHAR(255) NOT NULL , 
  `mens_clothes_qty` INT NOT NULL , 
@@ -33,3 +34,10 @@ CREATE table missing_persons
  `teens_clothes_qty` INT NOT NULL ,
  `toddlers_clothes_qty` INT NOT NULL , 
  PRIMARY KEY (`ID`));
+
+ -- create table volunteers -- 
+ CREATE TABLE volunteers 
+ (`position_id` INT NOT NULL AUTO_INCREMENT , 
+ `position_name` VARCHAR(255) NOT NULL , 
+ `quantity_needed` INT NOT NULL , 
+ PRIMARY KEY (`position_id`));
