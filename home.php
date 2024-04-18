@@ -44,7 +44,7 @@
     <!-- ********************** -->
     <section id="material-data-tables">
         
-        <!-- table for displayed FEMA needed materials -->
+        <!-- table for displaying FEMA needed materials -->
         <div id="materials-needed-container">
             <table id="fema-materials-table">
                 <div class="table-header">
@@ -52,10 +52,26 @@
                 </div>
                 <tr>
                     <th><p>Material Type</p></th>
-                    <th>Quantity Needed</th>
+                    <th><p>Quantity Needed</p></th>
                 </tr>
                 <?php
-                get_materials_needed();
+                    get_materials_needed();
+                ?>
+            </table>
+        </div>
+
+            <!-- table for displaying FEMA needed volunteers -->
+            <div id="volunteers-needed-container">
+            <table id="volunteers-needed-table">
+                <div class="table-header">
+                    <h2>Volunteers Needed by FEMA</h2>
+                </div>
+                <tr>
+                    <th><p>Volunteer Type</p></th>
+                    <th><p>Amount Needed</p></th>
+                </tr>
+                <?php
+                    get_volunteers_info();
                 ?>
             </table>
         </div>
@@ -85,13 +101,13 @@
     <!-- donation/request forms -->
     <!-- ********************** -->
     <section id="donate-request-forms">
+        <!-- form for fema requesting materials -->
         <?php 
             if($_SESSION["user_username"] === "fema"){ ?>
-        <!-- form for requesting materials -->
         <div id="rq-materials-container">
             <form action="./includes/mneededformhandler.php" id="materials-requested-form" method="post" class="forms">     
                 <div class="table-header">
-                    <h2>Materials Needed</h2>
+                    <h2>Add Materials Needed</h2>
                 </div>
             
                 <table>
@@ -135,6 +151,25 @@
                             <input type="number" class="quantity-input" min="0" name="rq-toddlers-qty" id="rq-toddlers-qty">
                         </td>
                     </tr>
+                </table>
+                <button type="submit" class="form-submit-btn">Submit</button>
+            </form>
+        </div>
+        <?php } ?>
+
+        <!-- form for fema requesting volunteers -->
+        <?php 
+            if($_SESSION["user_username"] === "fema"){ ?>
+        <div id="rq-volunteers-container">
+            <form action="" id="rq-volunteers-form" method="post" class="forms">     
+                <div class="table-header">
+                    <h2>Add Volunteers Needed</h2>
+                </div>
+            
+                <table>
+                    <?php
+                        get_volunteers_names();
+                    ?>
                 </table>
                 <button type="submit" class="form-submit-btn">Submit</button>
             </form>
@@ -290,7 +325,7 @@
                     <th><p>Last Name</p></th>
                     <th><p>Date Last Seen</p></th>
                     <?php if($_SESSION["user_username"] === "fema"){
-                        echo '<th>Mark as Found</th>';
+                        echo '<th><p>Mark as Found</p></th>';
                     }
                     ?>
                 </tr>
@@ -303,7 +338,7 @@
             //only display this if user is logged in as fema
                 if($_SESSION["user_username"] === "fema"){ ?>
                         <div id="update-missing">
-                            <button id="add-missing-btn" type="button" onclick="toggleMissingModal()">Add Missing Person</button>
+                            <button id="add-missing-btn" type="button" onclick="toggleMissingModal()" class="form-submit-btn">Add Missing Person</button>
                         </div>
         
                <?php } ?>

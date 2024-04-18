@@ -1,17 +1,19 @@
 TODOs
 
-- order missing persons table by the person seen least recently (Completed: includes/data.php - line 29)
 - popup on (normal user) page when community center is low on certain items
 - login system with different pages depending on login type (FEMA, community center, normal user)
-- styling (do later once overall structure of content is in place)
 - alert/popup representing trucks being "notified" when FEMA needs are mat
-- on FEMA page, ability to remove missing persons from list (simply, like just clicking a button or a box next to the name)
-    - on everyone else's page, alert when a person has been found 
+- on everyone else's page, alert when a person has been found 
 
 - rewrite/restructure code as necessary for improved readability and layout
     - use "empty" function instead of current setup for checking if data is empty?
+    - refactoring code to make more efficient (JS, CSS, etc)    
 
 - don't allow manual access to home.php without logging in
 
 - you can submit empty forms which doesn't really matter but still, maybe should have a warning (do PHP fix, maybe using functions from a file)
+    - changing quantity to 0 doesn't avoid "fill out form properly" error, you can't undo it
 - each community center has a different login and can only donate from themselves (mostly for materials to give to FEMA form)
+
+
+- notify user when things are successfully updated (through forms)

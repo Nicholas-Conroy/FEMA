@@ -145,6 +145,65 @@ if(document.getElementById("materials-given-form")){ //ensure form exists in DOM
 }
 
 //****************/
+// Submit Volunteers Needed Form
+//****************/
+
+// handle submitting of volunteers needed form
+if(document.getElementById("rq-volunteers-form")){ //ensure form exists in DOM, as it will only appear for FEMA user
+    document.getElementById("rq-volunteers-form").addEventListener('submit', event => {
+        event.preventDefault();
+
+        /*
+            ensure that if a volunteer quantity has been submitted, the respective volunteer name checkbox has been checked,
+            and vice versa (checkbox has been checked, must have a quantity selected)
+        */
+        const volunteersPositions = document.getElementById("rq-volunteers-form").getElementsByClassName("chkbox");
+
+        for(let i=0; i<volunteersPositions.length; i++){
+            let id = volunteersPositions[i].id;
+            if (volunteersPositions[i].checked) {
+                //all quantity boxes have the same id as the matching volunteer name, with the additon of -qty
+                // check if checked boxes have a value for their quantity
+                if(document.getElementById(id+"-qty").value == "") {
+                    alert("Please fill out form correctly");
+                    window.location.reload();
+                    return;
+                }
+            }
+            else {
+                // check if unchecked boxes have no value for their quantity
+                if(document.getElementById(id+"-qty").value != "") {
+                    alert("Please fill out form correctly");
+                    window.location.reload();
+                    return;
+                }
+            }
+        }
+        //serialize form data for sending as POST data
+        let formData = new FormData(document.getElementById("rq-volunteers-form"));
+
+    //send form data to PHP file, and return response if successfully entered in DB or not
+        fetch("includes/volunteers_formhandler.php", {
+            method: 'POST',
+            body: formData
+        })
+        //returning text, not json
+        .then(response => response.text())
+        .then(message => {
+
+            console.log(message);
+            window.location.reload();
+
+        })
+        .catch(error => {
+            console.log(error);
+            // alert(error);
+        })
+
+    });
+}
+
+//****************/
 // Handle submitting of donate to ccenter form
 //****************/
 

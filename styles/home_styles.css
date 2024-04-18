@@ -244,7 +244,12 @@ td {
 
 #update-missing {
     display: block;
-    margin-top: 20px;
+    margin-top: 0;
+    margin-bottom: 3em !important;
+}
+
+#update-missing button{
+    margin-top: 0;
 }
 
 
@@ -267,7 +272,8 @@ td {
     width: 30%;
     height: 30%;
     padding-bottom: 3em;
-    background-color: antiquewhite;
+    background-color: rgb(0,62,103);
+    color: rgb(243, 244, 249);
 }
 
 #missing-modal form {
