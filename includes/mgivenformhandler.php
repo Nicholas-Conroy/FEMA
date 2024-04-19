@@ -3,7 +3,7 @@
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         // echo $_SERVER["SERVER_NAME"];
         $materials = $_POST;
-        $center_name = $_POST["cc-names"];
+        $center_name = $_POST["cc-names-1"];
     }
     else {
             header('location: ../');

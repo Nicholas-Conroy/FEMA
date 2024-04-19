@@ -37,7 +37,7 @@ if(document.getElementById("materials-requested-form")){ //ensure form exists in
         let formData = new FormData(document.getElementById("materials-requested-form"));
 
     //send form data to PHP file, and return response if successfully entered in DB or not
-        fetch("includes/formhandlers/mneededformhandler.php", {
+        fetch("includes/mneededformhandler.php", {
             method: 'POST',
             body: formData
         })
@@ -68,7 +68,7 @@ if(document.getElementById("materials-given-form")){ //ensure form exists in DOM
         event.preventDefault();
 
         // ensure that a community center was selected, alert and do not submit otherwise
-        const ccenterList = document.getElementById("cc-names");
+        const ccenterList = document.getElementById("cc-names-1");
         let optionChecked = false;
         for(let i=1; i<ccenterList.length; i++) {
             if(ccenterList[i].selected) {
@@ -115,7 +115,7 @@ if(document.getElementById("materials-given-form")){ //ensure form exists in DOM
         let formData = new FormData(document.getElementById("materials-given-form"));
 
         //send form data to PHP file, and return response if successfully entered in DB or not
-        fetch("includes/formhandlers/mgivenformhandler.php", {
+        fetch("./includes/mgivenformhandler.php", {
             method: 'POST',
             body: formData
         })
@@ -183,7 +183,7 @@ if(document.getElementById("rq-volunteers-form")){ //ensure form exists in DOM, 
         let formData = new FormData(document.getElementById("rq-volunteers-form"));
 
     //send form data to PHP file, and return response if successfully entered in DB or not
-        fetch("includes/formhandlers/vneeded_formhandler.php", {
+        fetch("includes/vneeded_formhandler.php", {
             method: 'POST',
             body: formData
         })
@@ -212,7 +212,7 @@ if(document.getElementById("ccenter-donate-form")){ //ensure form exists in DOM
         event.preventDefault();
 
         // ensure that a community center was selected, alert and do not submit otherwise
-        const ccenterList = document.getElementById("cc-names");
+        const ccenterList = document.getElementById("cc-names-2");
         let optionChecked = false;
         for(let i=1; i<ccenterList.length; i++) {
             if(ccenterList[i].selected) {
@@ -255,7 +255,7 @@ if(document.getElementById("ccenter-donate-form")){ //ensure form exists in DOM
         let formData = new FormData(document.getElementById("ccenter-donate-form"));
 
     //send form data to PHP file, and return response if successfully entered in DB or not
-        fetch("includes/formhandlers/ccenter_donate_formhandler.php", {
+        fetch("includes/ccenter_donate_formhandler.php", {
             method: 'POST',
             body: formData
         })
@@ -307,7 +307,7 @@ for(let i=0; i<foundChboxes.length; i++) {
             console.log(personFields);
             
             //send data to PHP file
-            fetch("includes/formhandlers/delete_person.php", {
+            fetch("includes/delete_person.php", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

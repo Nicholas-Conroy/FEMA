@@ -106,7 +106,7 @@
         <?php 
             if($_SESSION["user_username"] === "fema"){ ?>
         <div id="rq-materials-container">
-            <form action="./includes/formhandlers/mneededformhandler.php" id="materials-requested-form" method="post" class="forms">     
+            <form action="./includes/mneededformhandler.php" id="materials-requested-form" method="post" class="forms">     
                 <div class="table-header">
                     <h2>Add Materials Needed</h2>
                 </div>
@@ -162,7 +162,7 @@
         <?php 
             if($_SESSION["user_username"] === "fema"){ ?>
         <div id="rq-volunteers-container">
-            <form action="includes/formhandlers/vneeded_formhandler.php" id="rq-volunteers-form" method="post" class="forms">     
+            <form action="includes/vneeded_formhandler.php" id="rq-volunteers-form" method="post" class="forms">     
                 <div class="table-header">
                     <h2>Add Volunteers Needed</h2>
                 </div>
@@ -181,7 +181,7 @@
             <!-- form for "giving" materials to fema -->
             <?php
                 if($_SESSION["user_username"] !== "fema"){ ?>
-            <form action="./includes/formhandlers/mgivenformhandler.php" id="materials-given-form" method="post" class="forms">
+            <form action="./includes/mgivenformhandler.php" id="materials-given-form" method="post" class="forms">
                 <div class="table-header">
                     <h2>Materials to Give to FEMA</h2>
                 </div>
@@ -189,8 +189,8 @@
                 <table>
                     <tr>
                         <td colspan="2">
-                            <label for="cc-names">Choose Center to Donate From: </label>
-                            <select name="cc-names" id="cc-names">
+                            <label for="cc-names-1">Choose Center to Donate From: </label>
+                            <select name="cc-names-1" id="cc-names-1">
                                 <?php
                             get_comm_center_names();
                                 ?>
@@ -262,17 +262,17 @@
         <div>
             <?php
                     if($_SESSION["user_username"] !== "fema"){ ?>
-            <form action="./includes/formhandlers/ccenter_donate_formhandler.php" id="ccenter-donate-form" method="post" class="forms">
+            <form action="./includes/ccenter_donate_formhandler.php" id="ccenter-donate-form" method="post" class="forms">
                     <div class="table-header">
                         <h2>Donate to Community Center</h2>
                     </div>
                     <table>
                         <tr>
                             <td colspan="2">
-                                <label for="cc-names">Donate to:</label>
-                                <select name="cc-names" id="cc-names">
+                                <label for="cc-names-2">Donate to:</label>
+                                <select name="cc-names-2" id="cc-names-2">
                                     <?php
-                                get_comm_center_names();
+                                        get_comm_center_names();
                                     ?>
                                 </select>
                             </td>
@@ -366,7 +366,7 @@
                         <!-- <div class="x-btn-container">
                             <button class="x-btn">X</button>
                         </div> -->
-                        <form action="./includes/formhandlers/mpersonformhandler.php" class="forms" id="missing-form" method="post">
+                        <form action="./includes/mpersonformhandler.php" class="forms" id="missing-form" method="post">
                             <h4>Enter Information</h4>
                             <div>
                                 <label for="fname">First Name</label>

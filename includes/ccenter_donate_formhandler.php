@@ -6,7 +6,7 @@
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         //set materials variable equal to POST assoc array (containing form data)
         $materials = $_POST;
-        $center_name = $_POST["cc-names"];
+        $center_name = $_POST["cc-names-2"];
     }
     else {
         header(('Location: ../home.php'));
