@@ -37,7 +37,7 @@ if(document.getElementById("materials-requested-form")){ //ensure form exists in
         let formData = new FormData(document.getElementById("materials-requested-form"));
 
     //send form data to PHP file, and return response if successfully entered in DB or not
-        fetch("includes/mneededformhandler.php", {
+        fetch("includes/formhandlers/mneededformhandler.php", {
             method: 'POST',
             body: formData
         })
@@ -115,7 +115,7 @@ if(document.getElementById("materials-given-form")){ //ensure form exists in DOM
         let formData = new FormData(document.getElementById("materials-given-form"));
 
         //send form data to PHP file, and return response if successfully entered in DB or not
-        fetch("includes/mgivenformhandler.php", {
+        fetch("includes/formhandlers/mgivenformhandler.php", {
             method: 'POST',
             body: formData
         })
@@ -183,7 +183,7 @@ if(document.getElementById("rq-volunteers-form")){ //ensure form exists in DOM, 
         let formData = new FormData(document.getElementById("rq-volunteers-form"));
 
     //send form data to PHP file, and return response if successfully entered in DB or not
-        fetch("includes/volunteers_formhandler.php", {
+        fetch("includes/formhandlers/vneeded_formhandler.php", {
             method: 'POST',
             body: formData
         })
@@ -255,7 +255,7 @@ if(document.getElementById("ccenter-donate-form")){ //ensure form exists in DOM
         let formData = new FormData(document.getElementById("ccenter-donate-form"));
 
     //send form data to PHP file, and return response if successfully entered in DB or not
-        fetch("includes/ccenter_donate_formhandler.php", {
+        fetch("includes/formhandlers/ccenter_donate_formhandler.php", {
             method: 'POST',
             body: formData
         })
@@ -307,7 +307,7 @@ for(let i=0; i<foundChboxes.length; i++) {
             console.log(personFields);
             
             //send data to PHP file
-            fetch("includes/delete_person.php", {
+            fetch("includes/formhandlers/delete_person.php", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

@@ -101,11 +101,12 @@
     <!-- donation/request forms -->
     <!-- ********************** -->
     <section id="donate-request-forms">
+
         <!-- form for fema requesting materials -->
         <?php 
             if($_SESSION["user_username"] === "fema"){ ?>
         <div id="rq-materials-container">
-            <form action="./includes/mneededformhandler.php" id="materials-requested-form" method="post" class="forms">     
+            <form action="./includes/formhandlers/mneededformhandler.php" id="materials-requested-form" method="post" class="forms">     
                 <div class="table-header">
                     <h2>Add Materials Needed</h2>
                 </div>
@@ -161,7 +162,7 @@
         <?php 
             if($_SESSION["user_username"] === "fema"){ ?>
         <div id="rq-volunteers-container">
-            <form action="" id="rq-volunteers-form" method="post" class="forms">     
+            <form action="includes/formhandlers/vneeded_formhandler.php" id="rq-volunteers-form" method="post" class="forms">     
                 <div class="table-header">
                     <h2>Add Volunteers Needed</h2>
                 </div>
@@ -176,77 +177,92 @@
         </div>
         <?php } ?>
             
-            <div>
-                <!-- form for "giving" materials to fema -->
-                <?php
-                    if($_SESSION["user_username"] !== "fema"){ ?>
-                <form action="./includes/mgivenformhandler.php" id="materials-given-form" method="post" class="forms">
-                    <div class="table-header">
-                        <h2>Materials to Give to FEMA</h2>
-                    </div>
-                
-                    <table>
-                        <tr>
-                            <td colspan="2">
-                                <label for="cc-names">Choose Center to Donate From: </label>
-                                <select name="cc-names" id="cc-names">
-                                    <?php
-                                get_comm_center_names();
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="gv-mens">Mens</label>
-                                <input type="checkbox" name="gv-mens" id="gv-mens" class="chkbox" value="Mens">
-                            </td>
-                            <td>
-                                <label for="gv-mens-qty">Quantity</label>
-                                <input type="number" class="quantity-input" min="0" name="gv-mens-qty" id="gv-mens-qty">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="gv-womens">Womens</label>
-                                <input type="checkbox" name="gv-womens" id="gv-womens" class="chkbox" value="Womens">
-                            </td>
-                            <td>
-                                <label for="gv-womens-qty">Quantity</label>
-                                <input type="number" class="quantity-input" min="0" name="gv-womens-qty" id="gv-womens-qty">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="gv-teens">Teens</label>
-                                <input type="checkbox" name="gv-teens" id="gv-teens" class="chkbox" value="Teens">
-                            </td>
-                            <td>
-                                <label for="gv-teens-qty">Quantity</label>
-                                <input type="number" class="quantity-input" min="0" name="gv-teens-qty" id="gv-teens-qty">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="gv-toddlers">Toddlers</label>
-                                <input type="checkbox" name="gv-toddlers" id="gv-toddlers" class="chkbox" value="Toddlers">
-                            </td>
-                            <td>
-                                <label for="gv-toddlers-qty">Quantity</label>
-                                <input type="number" class="quantity-input" min="0" name="gv-toddlers-qty" id="gv-toddlers-qty">
-                            </td>
-                        </tr>
-                    </table>
-                    <button type="submit" id="m-given-submit" class="form-submit-btn">Submit</button>
-                </form>
-                <?php } ?>
-            </div>
-
         <div>
-            <!-- form to donate to community center -->
+            <!-- form for "giving" materials to fema -->
+            <?php
+                if($_SESSION["user_username"] !== "fema"){ ?>
+            <form action="./includes/formhandlers/mgivenformhandler.php" id="materials-given-form" method="post" class="forms">
+                <div class="table-header">
+                    <h2>Materials to Give to FEMA</h2>
+                </div>
+            
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <label for="cc-names">Choose Center to Donate From: </label>
+                            <select name="cc-names" id="cc-names">
+                                <?php
+                            get_comm_center_names();
+                                ?>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="gv-mens">Mens</label>
+                            <input type="checkbox" name="gv-mens" id="gv-mens" class="chkbox" value="Mens">
+                        </td>
+                        <td>
+                            <label for="gv-mens-qty">Quantity</label>
+                            <input type="number" class="quantity-input" min="0" name="gv-mens-qty" id="gv-mens-qty">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="gv-womens">Womens</label>
+                            <input type="checkbox" name="gv-womens" id="gv-womens" class="chkbox" value="Womens">
+                        </td>
+                        <td>
+                            <label for="gv-womens-qty">Quantity</label>
+                            <input type="number" class="quantity-input" min="0" name="gv-womens-qty" id="gv-womens-qty">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="gv-teens">Teens</label>
+                            <input type="checkbox" name="gv-teens" id="gv-teens" class="chkbox" value="Teens">
+                        </td>
+                        <td>
+                            <label for="gv-teens-qty">Quantity</label>
+                            <input type="number" class="quantity-input" min="0" name="gv-teens-qty" id="gv-teens-qty">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="gv-toddlers">Toddlers</label>
+                            <input type="checkbox" name="gv-toddlers" id="gv-toddlers" class="chkbox" value="Toddlers">
+                        </td>
+                        <td>
+                            <label for="gv-toddlers-qty">Quantity</label>
+                            <input type="number" class="quantity-input" min="0" name="gv-toddlers-qty" id="gv-toddlers-qty">
+                        </td>
+                    </tr>
+                </table>
+                <button type="submit" id="m-given-submit" class="form-submit-btn">Submit</button>
+            </form>
+            <?php } ?>
+        </div>
+        
+        <!-- form to volunteer for a position -->
+        <div>
+            <h2>Where can you help out?</h2>
+            <form action="">
+                <select name="volunteer-list" id="volunteer-list">
+                    <?php
+                        get_volunteers_list();
+                    ?>
+                </select>
+                <div>
+                    <button>Volunteer!</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- form to donate to community center -->
+        <div>
             <?php
                     if($_SESSION["user_username"] !== "fema"){ ?>
-            <form action="./includes/ccenter_donate_formhandler.php" id="ccenter-donate-form" method="post" class="forms">
+            <form action="./includes/formhandlers/ccenter_donate_formhandler.php" id="ccenter-donate-form" method="post" class="forms">
                     <div class="table-header">
                         <h2>Donate to Community Center</h2>
                     </div>
@@ -350,7 +366,7 @@
                         <!-- <div class="x-btn-container">
                             <button class="x-btn">X</button>
                         </div> -->
-                        <form action="./includes/mpersonformhandler.php" class="forms" id="missing-form" method="post">
+                        <form action="./includes/formhandlers/mpersonformhandler.php" class="forms" id="missing-form" method="post">
                             <h4>Enter Information</h4>
                             <div>
                                 <label for="fname">First Name</label>

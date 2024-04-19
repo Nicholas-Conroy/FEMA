@@ -7,7 +7,8 @@ TODOs
 
 - rewrite/restructure code as necessary for improved readability and layout
     - use "empty" function instead of current setup for checking if data is empty?
-    - refactoring code to make more efficient (JS, CSS, etc)    
+    - refactoring code to make more efficient (JS, CSS, etc)   
+    - use php to generate donation form content, instead of hardcoding it (see volunteers form for example)
 
 - don't allow manual access to home.php without logging in
 

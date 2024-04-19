@@ -179,3 +179,25 @@ function get_volunteers_names(){
         ';
     }
 }
+
+//return option list of all volunteer names
+function get_volunteers_list(){
+    require "db.php";
+
+    $query = "SELECT position_id, position_name FROM volunteers ORDER BY position_name";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+
+    //get all rows of data returned from query as associative array 
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    //option to "explain" list to user, disabled
+    echo '<option selected disabled>Choose Position</option>';
+
+    foreach ($results as $row) {
+        echo '
+            <option value="' . $row["position_id"] . '">' . $row["position_name"] . '</option>
+        ';
+    }
+}
