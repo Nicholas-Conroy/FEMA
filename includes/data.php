@@ -193,7 +193,7 @@ function get_volunteers_list(){
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     //option to "explain" list to user, disabled
-    echo '<option selected disabled>Choose Position</option>';
+    echo '<option selected disabled>Choose Position &#x25BC;</option>';
 
     foreach ($results as $row) {
         echo '

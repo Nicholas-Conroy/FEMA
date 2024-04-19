@@ -245,16 +245,17 @@
         
         <!-- form to volunteer for a position -->
         <div>
-            <h2>Where can you help out?</h2>
-            <form action="">
+            <div class="table-header">
+                <h2>Where can you help out?</h2>
+            </div>
+            <form action="includes/volunteer.php" method="post" id="volunteer-options">
                 <select name="volunteer-list" id="volunteer-list">
                     <?php
                         get_volunteers_list();
                     ?>
                 </select>
-                <div>
-                    <button>Volunteer!</button>
-                </div>
+                
+                <button class="form-submit-btn">Volunteer!</button>
             </form>
         </div>
 

@@ -166,6 +166,12 @@ header h1 {
     cursor: pointer;
 }
 
+#volunteer-options button{
+    margin: auto;
+    margin-bottom: 2em;
+    display: block;
+}
+
     /* dropdown lists */
 #donate-request-forms select {
     /* do stuff */
@@ -173,6 +179,30 @@ header h1 {
 
 #donate-request-forms option::after {
     content: ">>";
+}
+
+#volunteer-options select {
+    margin: auto;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    display: block;
+
+    /* height: 4em; */
+    text-overflow: ellipsis;
+    padding: 8px;
+    border: 3px solid white;
+    appearance: none;
+    background-color: rgb(170, 216, 246);
+    color: rgb(0,62,103);
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+    box-shadow: 0 0 20px white;
+}
+
+#volunteer-options select:hover {
+    cursor: pointer;
 }
 
 h2 {
