@@ -16,12 +16,12 @@ function get_materials_needed(){
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($results as $row) {
-        echo "
+        echo '
             <tr>
-                <td><p>" . $row['material_name'] . " Clothes</p></td>
-                <td><p>" . $row['quantity_needed'] . "</p></td>
+                <td><p>' . $row['material_name'] . ' Clothes</p></td>
+                <td class="fema-materials-qty"><p>' . $row['quantity_needed'] . '</p></td>
             </tr>
-        ";
+        ';
 
     }
 }

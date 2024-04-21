@@ -244,6 +244,8 @@
         </div>
         
         <!-- form to volunteer for a position -->
+        <?php
+                if($_SESSION["user_username"] !== "fema"){ ?>
         <div>
             <div class="table-header">
                 <h2>Where can you help out?</h2>
@@ -258,6 +260,7 @@
                 <button class="form-submit-btn">Volunteer!</button>
             </form>
         </div>
+        <?php } ?>
 
         <!-- form to donate to community center -->
         <div>
@@ -387,6 +390,10 @@
           <?php  } ?>
     </section>
 
+    <!-- popup that displays when FEMA material quantities are all 0 -->
+    <div id="trucks-popup">
+        <h3>FEMA has been given all necessary materials. Transportation trucks have been sent out.</h3>
+    </div>
     <script src="functions.js"></script>
 </body>
 </html>

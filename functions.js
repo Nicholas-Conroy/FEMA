@@ -1,3 +1,21 @@
+//***************/
+// Popup if FEMA materials needed are all 0
+//***************/
+const neededMaterialsQtys = document.getElementsByClassName("fema-materials-qty");
+let numOfZeroes = 0;
+
+for(let i=0; i<neededMaterialsQtys.length; i++){
+    let curQuantity = parseInt(neededMaterialsQtys[i].children[0].innerHTML);
+    
+    if(curQuantity === 0) numOfZeroes++;
+}
+
+//display message if all quantity values are 0
+if(numOfZeroes === neededMaterialsQtys.length) {
+    document.getElementById("trucks-popup").style.display = "flex";
+}
+
+
 //****************/
 // Submit Materials Needed Form
 //****************/
@@ -280,6 +298,10 @@ if(document.getElementById("ccenter-donate-form")){ //ensure form exists in DOM
 
     });
 }
+
+//******************/
+// Remove missing person using checkbox
+//******************/
 
 //checkboxes for each missing person in table
 let foundChboxes = document.getElementsByClassName("found-chbox");

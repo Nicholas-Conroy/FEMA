@@ -320,3 +320,19 @@ td {
     width: 100%;
     display: block;
 }
+
+/****************/
+/* Trucks Popup */
+/****************/
+ #trucks-popup {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    background-color: rgb(229, 238, 222);
+    color: rgb(71, 115, 38);
+    width: 100%;
+    height: 6em;
+    display: none;
+    justify-content: center;
+    align-items: center;
+ }
