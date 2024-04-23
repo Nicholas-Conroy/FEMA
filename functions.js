@@ -13,6 +13,7 @@ for(let i=0; i<neededMaterialsQtys.length; i++){
 //display message if all quantity values are 0
 if(numOfZeroes === neededMaterialsQtys.length) {
     document.getElementById("trucks-popup").style.display = "flex";
+    document.getElementById("persons").style.marginBottom = "10%"; //add margin so message doesn't cover bottom of persons table/submit button
 }
 
 

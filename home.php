@@ -43,7 +43,7 @@
     <!-- data tables -->
     <!-- ********************** -->
     <section id="material-data-tables">
-        
+        <h1 class="section-title">General Information</h3>
         <!-- table for displaying FEMA needed materials -->
         <div id="materials-needed-container">
             <table id="fema-materials-table">
@@ -101,7 +101,7 @@
     <!-- donation/request forms -->
     <!-- ********************** -->
     <section id="donate-request-forms">
-
+        <h1 class="section-title">Submission Forms</h3>
         <!-- form for fema requesting materials -->
         <?php 
             if($_SESSION["user_username"] === "fema"){ ?>
@@ -177,10 +177,10 @@
         </div>
         <?php } ?>
             
+        <!-- form for "giving" materials to fema -->
+        <?php
+            if($_SESSION["user_username"] === "ccenter"){ ?>
         <div>
-            <!-- form for "giving" materials to fema -->
-            <?php
-                if($_SESSION["user_username"] !== "fema"){ ?>
             <form action="./includes/mgivenformhandler.php" id="materials-given-form" method="post" class="forms">
                 <div class="table-header">
                     <h2>Materials to Give to FEMA</h2>
@@ -240,12 +240,12 @@
                 </table>
                 <button type="submit" id="m-given-submit" class="form-submit-btn">Submit</button>
             </form>
-            <?php } ?>
         </div>
+        <?php } ?>
         
         <!-- form to volunteer for a position -->
         <?php
-                if($_SESSION["user_username"] !== "fema"){ ?>
+                if($_SESSION["user_username"] !== "fema" && $_SESSION["user_username"] !== "ccenter"){ ?>
         <div>
             <div class="table-header">
                 <h2>Where can you help out?</h2>
@@ -263,9 +263,9 @@
         <?php } ?>
 
         <!-- form to donate to community center -->
+        <?php
+            if($_SESSION["user_username"] !== "fema" && $_SESSION["user_username"] !== "ccenter"){ ?>
         <div>
-            <?php
-                    if($_SESSION["user_username"] !== "fema"){ ?>
             <form action="./includes/ccenter_donate_formhandler.php" id="ccenter-donate-form" method="post" class="forms">
                     <div class="table-header">
                         <h2>Donate to Community Center</h2>
@@ -324,8 +324,8 @@
                         </table>
                         <button type="submit" id="m-given-submit" class="form-submit-btn">Submit</button>
                 </form>
-                <?php } ?>
-        </div>
+            </div>
+        <?php } ?>
         
     </section>
 
@@ -335,6 +335,7 @@
     <!-- ********************** -->
 
     <section id="missing-persons">
+        <h1 class="section-title">Information About Missing Persons</h3>
         <div id="persons">
             <div class="table-header">
                 <h2>Missing Persons</h2>
@@ -363,6 +364,8 @@
         
                <?php } ?>
         </div>
+
+        <!-- add missing person modal -->
         <?php
         //only display this if user is logged in as fema
             if($_SESSION["user_username"] === "fema"){ ?>
