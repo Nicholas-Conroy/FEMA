@@ -144,10 +144,10 @@ if(document.getElementById("materials-given-form")){ //ensure form exists in DOM
 
             //invalid data submitted (ex: caused quantity to be negative)
             if(message === "not_enough_resources"){
-                alert("I said we don't have the capacity");
+                alert("Your community center does not have enough resources");
             }
             else if(message === "invalid"){
-                alert("You have given more than is needed. Relax.");
+                alert("You have given more than is needed");
             }
             
 

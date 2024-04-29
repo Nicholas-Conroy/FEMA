@@ -27,13 +27,15 @@ CREATE table missing_persons
 
 -- **fix/update this**
  CREATE TABLE comm_centers 
- (`ID` INT NOT NULL AUTO_INCREMENT , 
+ (`center_id` INT NOT NULL AUTO_INCREMENT , 
  `center_name` VARCHAR(255) NOT NULL , 
- `mens_clothes_qty` INT NOT NULL , 
- `womens_clothes_qty` INT NOT NULL ,
- `teens_clothes_qty` INT NOT NULL ,
- `toddlers_clothes_qty` INT NOT NULL , 
- PRIMARY KEY (`ID`));
+ `material_id` INT NOT NULL , 
+ `material_name` VARCHAR(30) NOT NULL ,
+ `quantity` INT NOT NULL , 
+ PRIMARY KEY (`center_id`, `material_id`)),
+ CONSTRAINT `FK_materialID` FOREIGN KEY (`material_id`)
+ REFERENCES materials(`material_id`)
+ ;
 
  -- create table volunteers -- 
  CREATE TABLE volunteers 

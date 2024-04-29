@@ -1,8 +1,6 @@
 TODOs
 
 - popup on (normal user) page when community center is low on certain items
-- login system with different pages depending on login type (FEMA, community center, normal user)
-- alert/popup representing trucks being "notified" when FEMA needs are mat
 - on everyone else's page, alert when a person has been found 
 
 - rewrite/restructure code as necessary for improved readability and layout

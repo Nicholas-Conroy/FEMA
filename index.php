@@ -5,7 +5,7 @@
     require_once "includes/login/login_view.inc.php";
 
 ?>
-<!-- TODO: can remove login page display stuff -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
