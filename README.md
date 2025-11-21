@@ -1,0 +1,1 @@
+Class project modeling a simplified Federal Emergency Management Agency (FEMA) landing page, with login functionality (with different access levels/views), "donation" options, and overviews of status. 
